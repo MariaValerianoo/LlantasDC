@@ -1,0 +1,67 @@
+create database BDMascotas;
+use BDMascotas;
+create table cliente(
+cedulaCliente int(11) primary key not null,
+nombreCliente varchar(15) null,
+apellidoCliente varchar(15) null,
+direccionCliente varchar(15) null,
+telefono int(10)  null,
+idMascotaFK int(11) not null unique
+
+
+);
+create table producto(
+codigoProducto int(11) primary key not null,
+nombreProducto varchar(15) not null,
+marca varchar(15) not null,
+precio float not null,
+cedulaClienteFK int(11) not null unique
+
+
+);
+create table mascota(
+idMascota int(11) primary key not null,
+nombreMascota varchar (15) not null,
+generoMascota varchar(15) not null,
+razaMascota varchar (15) not null,
+cantidad int(10)
+
+);
+create table mascota_vacuna(
+codigoVacunaFK int (11) not null,
+idMascotaFK int(11) not null,
+enfermedad varchar(15) not null
+
+);
+create table vacuna(
+codigoVacuna int(11) primary key not null,
+nombreVacuna int(10),
+dosisVacuna int(10),
+enfermedad varchar(15)
+
+);
+alter table producto
+add constraint Productclien
+foreign key(cedulaClienteFK)
+references cliente(cedulaCliente);
+
+alter table cliente
+add constraint clienteMasc
+foreign key(idMascotaFK)
+references mascota(idMascota);
+
+alter table mascota_vacuna
+add constraint mascMVac
+foreign key(idMascotaFK)
+references mascota(idMascota);
+
+alter table mascota_vacuna
+add constraint VacMasV
+foreign key(codigoVacunaFK)
+references vacuna(codigoVacuna);
+/*PUNTO 4*/
+alter table producto add column cantidad int(10)  not null;
+/*punto 5*/
+alter table mascota change column cantidad cantidadMascota int(10);
+/*punto 6*/
+alter table mascota_vacuna rename detallevacuna;
