@@ -1,0 +1,119 @@
+create database Mascotas;
+use Mascotas;
+drop database Mascotas;
+
+/*CREACION TABLAS*/
+create table Cliente(
+cedulaCliente int(11) primary key,
+nombreCliente varchar (15),
+apellidoCliente varchar(15),
+direccionCliente varchar (10),
+telefono int (10),
+idMascotaFK int(11)
+);
+
+create table Producto(
+codigoProducto int(11) primary key,
+nombreProducto varchar(15),
+marca varchar (15),
+precio float,
+cedulaClienteFK int (11)
+);
+
+create table Mascota(
+idMascota int(11) primary key,
+nombreMascota varchar(15),
+generoMascota varchar (15),
+razaMascota varchar(15),
+cantidad int(10)
+);
+
+create table Vacuna(
+codigoVacuna int(11) primary key,
+nombreVacuna varchar(15),
+dosisVacuna int(10),
+enfermedad varchar (15)
+);
+
+create table Mascota_Vacuna(
+codigoVacunaFK int(11),
+idMascotaFK int(11) ,
+enfermedad varchar(15)
+);
+drop table detalleVacuna;
+
+
+/*RELACIONES*/
+
+ALTER TABLE Mascota_Vacuna
+ADD PRIMARY KEY (codigoVacunaFK, idMascotaFK);
+
+
+alter table Cliente
+add constraint idMascotaFK
+foreign key (idMascotaFK)
+references Mascota(idMascota);
+
+alter table Producto
+add constraint cedulaClienteFK 
+foreign key (cedulaClienteFK)
+references Cliente(cedulaCliente);
+
+alter table Mascota_Vacuna
+add constraint codigoVacunaFK
+foreign key (codigoVacunaFK)
+references Vacuna(codigoVacuna);
+
+alter table MascotaVacuna
+add constraint idMascotaFK
+foreign key (idMascotaFK)
+references Mascota(idMascota);
+
+SHOW CREATE TABLE Mascota_Vacuna;
+
+
+/*Agregar cantidad en Producto*/
+
+alter table Producto
+add Cantidad int;
+
+/*Cambiar el nombre en mascota cantidad por cantidadmascota*/
+
+alter table Mascota
+rename to CantidadMascota;
+
+/* cambiar nombre de tabla mascota_vacuna a detalle_vacuna*/
+
+alter table Mascota_Vacuna
+rename to detalleVacuna;
+show tables;
+
+select * from CantidadMascota;
+describe CantidadMascota;
+describe Producto;
+insert into Producto values (1,'Shampoo','pets',10500,36290658); /*en tablas sin llaves foraneas*/
+insert into CantidadMascota values(1,'Mateo','M','Labrador',2);
+insert into CantidadMascota values(2,'Tommy','M','Schnauzer',12);
+insert into CantidadMascota values(3,'Khloe','F','Criolla',4);
+insert into CantidadMascota values(4,'Baguira','F','Criolla',5);
+
+select * from Vacuna;
+describe Vacuna;
+
+insert into Vacuna values ('123','Hepatitis','Tres dosis','Hepatitis');
+insert into Vacuna values ('1234','Sarampion','Dos dosis','Sarampion');
+
+
+
+select * from Cliente;
+describe Cliente;
+
+insert into Cliente values('1005691221','Rosa','Galicia','Calle 10 #3-46','3145753229','2');
+insert into Cliente values('1021665337','Carlos','Galan','Colina','3163881131','3');
+insert into Cliente values('1000345677','Valentina','Vahos','Chapinero','3161031622','4');
+
+select * from Producto;
+describe Producto;
+
+insert into Producto values ('12345','Mascarilla','Garnier','32900','1005691221','1');
+insert into Producto values ('1','Aceite coco','Ponto','20900','1000345677','1');
