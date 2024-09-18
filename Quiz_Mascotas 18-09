@@ -1,0 +1,101 @@
+create database BDmascotas;
+use BDmascotas;
+
+create table Cliente(
+cedulaCliente int (11) primary key,
+nombreCliente varchar (15),
+apellidoCliente varchar (15),
+direccionCliente varchar (15),
+telefono int (10),
+idMascotaFK int (11)
+);
+
+create table Producto (
+codigoProducto int (11) primary key,
+nombreProducto varchar (15),
+marca varchar(15),
+precio float,
+cedulaClienteFK int (11)
+);
+
+create table Mascota(
+idMascota int (11) primary key,
+nombreMascota varchar(15),
+generoMascota varchar(15),
+razaMascora varchar(15),
+cantidad int (10)
+);
+
+create table Mascota_vacuna(
+codigoVacunaFK int (11),
+idMascotaFK int(11),
+enfermedad varchar(15)
+);
+
+create table Vacuna(
+codigoVacuna int(11) primary key,
+nombreVacuna varchar (11),
+dosisVacuna int(10),
+enfermedad varchar(15)
+);
+
+alter table Cliente 
+add constraint FKidMascota
+foreign key (idMascotaFK)
+references Mascota(idMascota);
+
+alter table Producto 
+add constraint FKcedulaCliente
+foreign key (cedulaClienteFK)
+references Cliente(cedulaCliente);
+
+alter table Mascota_vacuna 
+add constraint codvac
+foreign key (codigoVacunaFK)
+references Vacuna(codigoVacuna);
+
+
+alter table Mascota_vacuna 
+add constraint masvac
+foreign key (idMascotaFK)
+references Mascota(idMascota);
+
+describe Mascota_vacuna;
+describe Vacuna;
+describe Mascota;
+
+alter table Producto 
+add cantidadProducto int not null;
+
+
+alter table Mascota 
+change column cantidad cantidadMascota int(10);
+
+alter table Mascota_vacuna rename to detalleVacuna;
+
+select * from Mascota;
+
+describe Mascota;
+
+insert into Mascota values (1,'Cookie','F','Border collie',1);
+insert into Mascota values (2,'Luna','F','schnauzer',1), (3,'White','F','bull terrier',1);
+insert into Mascota values (4,'','','','');
+
+describe Vacuna;
+insert into Vacuna values (1,'Rabia',1,'Rabia'), (2,'Pentavalente',2,'Moquillo');
+select* from Vacuna;
+
+select * from Cliente;
+describe Cliente;
+insert into Cliente values(1014661499,'Danna','Solano','Calle 6a #94a-25',3024778127,1);
+insert into Cliente values(36306093,'Jaqueline','Bocanegra','Calle 6a #94a-25',31076268271,2);
+
+describe Producto;
+select * from Producto;
+insert into Producto values(1,'Shampoo','pets',10500,1014661499,1);
+insert into Producto values(2,'Peine','pets',9500,36306093,1);
+
+describe Detallevacuna;
+select* from Detallevacuna;
+insert into Detallevacuna values(1,1,'Rabia');
+insert into Detallevacuna values(2,3,'Moquillo');
