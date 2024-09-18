@@ -1,0 +1,87 @@
+create database BDMascotas;
+use BDMascotas;
+create table cliente(
+cedulaCliente int(11) primary key not null,
+nombreCliente varchar(15) null,
+apellidoCliente varchar(15) null,
+direccionCliente varchar(15) null,
+telefono int(10)  null,
+idMascotaFK int(11) not null unique
+
+
+);
+create table producto(
+codigoProducto int(11) primary key not null,
+nombreProducto varchar(15) not null,
+marca varchar(15) not null,
+precio float not null,
+cedulaClienteFK int(11) not null unique
+
+
+);
+create table mascota(
+idMascota int(11) primary key not null,
+nombreMascota varchar (15) not null,
+generoMascota varchar(15) not null,
+razaMascota varchar (15) not null,
+cantidad int(10)
+
+);
+create table mascota_vacuna(
+codigoVacunaFK int (11) not null,
+idMascotaFK int(11) not null,
+enfermedad varchar(15) not null
+
+);
+create table vacuna(
+codigoVacuna int(11) primary key not null,
+nombreVacuna int(10),
+dosisVacuna int(10),
+enfermedad varchar(15)
+
+);
+alter table producto
+add constraint Productclien
+foreign key(cedulaClienteFK)
+references cliente(cedulaCliente);
+
+alter table cliente
+add constraint clienteMasc
+foreign key(idMascotaFK)
+references mascota(idMascota);
+
+alter table mascota_vacuna
+add constraint mascMVac
+foreign key(idMascotaFK)
+references mascota(idMascota);
+
+alter table mascota_vacuna
+add constraint VacMasV
+foreign key(codigoVacunaFK)
+references vacuna(codigoVacuna);
+/*PUNTO 4*/
+alter table producto add column cantidad int(10)  not null;
+/*punto 5*/
+alter table mascota change column cantidad cantidadMascota int(10);
+/*punto 6*/
+alter table mascota_vacuna rename detallevacuna;
+alter table vacuna
+modify column nombreVacuna varchar(50) not null;
+alter table cliente
+modify column telefono varchar(20) not null;
+select * from mascota;
+describe vacuna;
+insert into mascota values(1,'Lupe','f','criollo',1);
+insert into mascota values(2,'Luna','f','criollo',1),(3,'Bombon','f','Criollo',1);
+insert into mascota values(4,'fermin','m','criollo','');
+insert into vacuna values(12,'rabia',50,'rabia'),(13,'gripa',40,'peste');
+select * from vacuna;
+describe cliente;
+insert into cliente values(1028481760,'mafe','Valeriano','calle10',3103305802,1),(1014661499,'danna','solano','calle15',3222044815,2);
+select * from cliente;
+describe producto;
+insert into producto values(15,'shampoo','pet',11.500,1028481760,2),(2,'comida','pet',11.300,1014661499,2);
+select * from producto;
+describe detallevacuna;
+insert into detallevacuna values(12,1,'rabia'),(13,3,'gripa');
+select * from detallevacuna;
