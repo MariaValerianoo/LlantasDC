@@ -85,3 +85,14 @@ select * from producto;
 describe detallevacuna;
 insert into detallevacuna values(12,1,'rabia'),(13,3,'gripa');
 select * from detallevacuna;
+
+select nombreMascota,razaMascota from mascota;
+select cedulaCliente as 'Documento', direccionCliente as 'Dirección' from cliente;
+describe vacuna;
+select dosisVacuna as 'Dosis', enfermedad as 'Enfermedad' from vacuna;
+describe producto;
+select precio as 'precio', nombreProducto as 'Producto' from producto;
+describe mascota;
+select nombreMascota as 'Nombre', generoMascota as 'Genero' from mascota;
+select nombreProducto from producto order by nombreProducto ASC;
+select nombreMascota from mascota order by idMascota ASC;
