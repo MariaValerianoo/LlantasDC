@@ -99,3 +99,30 @@ describe Detallevacuna;
 select* from Detallevacuna;
 insert into Detallevacuna values(1,1,'Rabia');
 insert into Detallevacuna values(2,3,'Moquillo');
+
+select * from mascota;
+describe Mascota;
+alter table Mascota 
+change column razaMascora razaMascota varchar(15);
+
+select nombreMascota,razaMascota from Mascota;
+
+describe Cliente;
+select cedulaCliente as 'Documento', direccionCliente as 'Direccion' from cliente;
+
+describe Producto;
+select nombreProducto as 'Producto', marca as 'marca del producto' from Producto;
+
+describe Mascota;
+select nombreMascota as 'Nombre', idMascota as 'Documento' from Mascota;
+
+describe Vacuna;
+select nombrevacuna as 'vacuna', dosisVacuna as 'dosis' from Vacuna;
+
+/*select campo1 from nombre_tabla order by campo 2 ASC (ascendente) DESC (desecendente);*/
+
+describe Cliente;
+select cedulaCliente as 'Documento', idMascotaFK as 'codigo Mascota' from Cliente order by nombreCliente ASC;
+describe producto;
+select nombreProducto, marca from Producto order by precio ASC;
+
