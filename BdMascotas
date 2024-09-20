@@ -95,4 +95,42 @@ select precio as 'precio', nombreProducto as 'Producto' from producto;
 describe mascota;
 select nombreMascota as 'Nombre', generoMascota as 'Genero' from mascota;
 select nombreProducto from producto order by nombreProducto ASC;
-select nombreMascota from mascota order by idMascota ASC;
+select nombreMascota from mascota order by generoMascota ASC;
+select nombreProducto,marca from producto order by precio DESC;
+
+select nombreProducto from producto where precio >= 11.000;
+select enfermedad from detalleVacuna where codigoVacunaFK >= 5;
+select nombreProducto from producto where precio >= 11.000 and codigoProducto>2;
+select nombreProducto from producto where precio >= 11.000 or codigoProducto<2;
+
+/* dos consultas usando operadores logicos y operadores relacionales  vacuna, cliente mascota de tipo varchar*/
+describe vacuna;
+select* from vacuna;
+select nombreVacuna from vacuna where dosisVacuna >= 15;
+select codigoVacuna from vacuna where enfermedad='rabia';
+select codigoVacuna from vacuna where enfermedad='rabia' and dosisVacuna>=30;
+select codigoVacuna from vacuna where enfermedad='rabia' or dosisVacuna =40;
+
+
+describe cliente;
+select* from cliente;
+select cedulaCliente from cliente where idMascotaFK <= 15;
+select idMascotaFk from cliente where telefono='3222044815';
+select apellidoCliente from cliente where telefono='3103305802' and idMascotaFK<=15;
+select direccionCliente from cliente where telefono='3103305802' or cedulaCliente >=40;
+
+
+describe mascota;
+select* from mascota;
+select generoMascota from mascota where idMascota<= 15;
+select razaMascota from mascota where generoMascota='f';
+select cantidadMascota from mascota where generoMascota='m' and idMascota<=15;
+select nombreMascota from mascota where generoMascota='f' or cantidadMascota=0;
+
+select idMascota from mascota where cantidadMascota like '4%';
+
+
+
+/* dos busquedas de tipo like en cada tabla*/
+
+
