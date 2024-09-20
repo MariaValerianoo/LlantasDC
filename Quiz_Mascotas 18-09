@@ -126,3 +126,25 @@ select cedulaCliente as 'Documento', idMascotaFK as 'codigo Mascota' from Client
 describe producto;
 select nombreProducto, marca from Producto order by precio ASC;
 
+/*select campo1 from nombre_tabla WHERE campo_nume operador valos de la consulta*/
+
+select nombreProducto from Producto WHERE precio >=1000 AND codigoProducto >2;
+select enfermedad from detalleVacuna WHERE  codigoVacunaFK >1; 
+
+/*operador logico AND y OR*/
+
+select * from Vacuna;
+select nombreVacuna from Vacuna WHERE enfermedad = 'Moquillo' OR dosisVacuna >=1;
+select* from Mascota;
+select nombreMascota from Mascota WHERE generoMascota = 'F' AND razaMascota = 'bull terrier';
+select * from Cliente;
+select apellidoCliente from Cliente WHERE idMascotaFK >1 OR nombreCliente = 'Danna';
+
+/*Consulta con rangos BETWEEN*/
+select nombreProducto from Producto WHERE precio BETWEEN 1000 AND 15000;
+
+/*LIKE BO% (INICIO) %BO (FINAL) %BO% (CUALQUIER LADO)*/
+select nombreProducto from Producto WHERE marca LIKE 'P%';
+
+/*que no tenga NOT LIKE*/
+select nombreProducto from Producto WHERE marca NOT LIKE 'a%';
