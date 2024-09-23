@@ -1,0 +1,53 @@
+create database TiendaOnline;
+use TiendaOnline;
+
+create table Producto(
+idProducto int(20) not null,
+nombreProducto varchar(50),
+CodB int primary key,
+precioProducto float not null
+);
+drop table Producto;
+
+create table Usuario(
+idUsuario int primary key,
+cedulaUsuario int(11),
+nombreUsuario varchar(15)null,
+apellidoUsuario varchar(15)null,
+direccionUsuario varchar (10)null,
+telefonoUsuario int(10) null
+);
+
+create table Cliente(
+idCliente int primary key,
+cedulaCliente int(11)  not null,
+nombreCliente varchar(15)null,
+apellidoCliente varchar(15)null,
+direccionCliente varchar(10)null,
+telefonoCliente int(10) null
+);
+
+create table Venta(
+idUsuarioFK int (20) not null unique,
+idClienteFK int (20)  not null unique,
+idVenta int primary key, 
+numOrdenFK int (50) not null unique
+);
+
+/*RELACIONES*/
+
+alter table Venta
+add constraint FKUsuVenta
+foreign key (idUsuarioFK)
+references Usuario(idUsuario);
+
+alter table Venta
+add constraint FKClienteVenta
+foreign key (idClienteFK)
+references Cliente(idCliente);
+
+
+
+
+
+
