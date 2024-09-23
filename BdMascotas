@@ -78,6 +78,7 @@ insert into vacuna values(12,'rabia',50,'rabia'),(13,'gripa',40,'peste');
 select * from vacuna;
 describe cliente;
 insert into cliente values(1028481760,'mafe','Valeriano','calle10',3103305802,1),(1014661499,'danna','solano','calle15',3222044815,2);
+insert into cliente values(52537135,'Ruth','Pulido','calle3','3173613339',4);
 select * from cliente;
 describe producto;
 insert into producto values(15,'shampoo','pet',11.500,1028481760,2),(2,'comida','pet',11.300,1014661499,2);
@@ -124,13 +125,22 @@ describe mascota;
 select* from mascota;
 select generoMascota from mascota where idMascota<= 15;
 select razaMascota from mascota where generoMascota='f';
-select cantidadMascota from mascota where generoMascota='m' and idMascota<=15;
+select cantidadMascota from mascota where generoMascota='f' and idMascota<=15;
 select nombreMascota from mascota where generoMascota='f' or cantidadMascota=0;
-
-select idMascota from mascota where cantidadMascota like '4%';
-
 
 
 /* dos busquedas de tipo like en cada tabla*/
+select cedulaCliente from cliente where cedulaCliente like '1%';
+select cedulaCliente from cliente where nombreCliente like '%u%';
 
+select codigoProducto from producto where codigoProducto like '2%';
+select codigoProducto from producto where nombreProducto like '%p%';
 
+select idMascota from mascota where cantidad like '1%';
+select idMascota from mascota where nombreMascota like '%o%';
+
+select idMascotaFK from mascota_vacuna where enfermedad like 'V%';
+select idMascotaFK from mascota_vacuna where enfermedad like '%flu%';
+
+select codigoVacuna from vacuna where codigoVacuna like '3%';
+select codigoVacuna from vacuna where nombreVacuna like '%d%';
