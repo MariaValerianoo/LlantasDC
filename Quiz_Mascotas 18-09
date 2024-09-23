@@ -148,3 +148,15 @@ select nombreProducto from Producto WHERE marca LIKE 'P%';
 
 /*que no tenga NOT LIKE*/
 select nombreProducto from Producto WHERE marca NOT LIKE 'a%';
+
+select nombreCliente from Cliente WHERE apellidoCliente LIKE '%a%' or apellidoCliente LIKE '%s';
+select codigoVacunaFK from Detallevacuna WHERE enfermedad LIKE 'm%' and enfermedad LIKE '%o%';
+SELECT nombreMascota FROM Mascota WHERE razaMascota LIKE '%a%' AND generoMascota LIKE 'f%';
+select codigoProducto from Producto WHERE nombreProducto LIKE '%t%';
+select nombreVacuna from Vacuna WHERE enfermedad LIKE 'm%' or enfermedad LIKE '%e'; 
+
+select cedulaCliente from Cliente WHERE nombreCliente NOT LIKE 'a%' and nombreCliente NOT LIKE '%n%';
+select idMascotaFK from Detallevacuna WHERE enfermedad NOT LIKE '%a' OR enfermedad NOT LIKE 'R%';
+select idMascota from Mascota WHERE nombreMascota NOT LIKE 'a%' and razaMascota NOT LIKE 'B%';
+select precio from Producto WHERE nombreProducto NOT LIKE 'p%';
+select codigoVacuna from Vacuna WHERE nombreVacuna NOT LIKE '%e%' OR enfermedad NOT LIKE 's%';
