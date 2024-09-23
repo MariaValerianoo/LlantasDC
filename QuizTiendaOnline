@@ -1,0 +1,83 @@
+create database DBtiendaOnline;
+use DBtiendaOnline;
+
+create table cliente(
+idCliente varchar(11) primary key not null,
+nombreCliente varchar(15) null,
+apellidoCliente varchar(15) null,
+direccionCliente varchar(15) null,
+telefono int(10)  null
+
+);
+
+create table venta(
+idVentas int(15) not null,
+numOrden varchar(15) primary key not null,
+fechaCompra date not null,
+totalCompra int(80) not null,
+idUsuarioFK varchar (15) not null,
+numOrderFK varchar(15) not null,
+idClienteFk varchar(15)not null
+
+);
+create table usuario(
+idUsuario varchar (15)primary key not null,
+cedulaUsuario int(11) not null,
+nombreCliente varchar(15) null,
+apellidoCliente varchar(15) null,
+direccionCliente varchar(15) null,
+telefono int(10)  null
+);
+create table producto(
+idProducto int(11) not null,
+codigoBarras varchar(15) primary key not null,
+nombreProducto varchar(15) not null,
+marca varchar(15) not null,
+precio float not null,
+cedulaClienteFK int(11) not null unique
+);
+
+create table prodVen(
+numOrdenFK varchar(15) not null,
+codigoBarrasFK varchar(18) not null,
+total varchar(15)
+
+);
+
+
+
+alter table venta
+add constraint ventaUsu
+foreign key(idUsuarioFK)
+references usuario(idUsuario);
+
+alter table venta
+add constraint ventaClie
+foreign key(idClienteFK)
+references cliente(idCliente);
+
+
+alter table prodVen
+add constraint FKprodventa
+foreign key(numOrdenFK)
+references venta(numOrden);
+
+alter table prodVen
+add constraint prodvenK
+foreign key(codigoBarrasFK)
+references producto(codigoBarras);
+
+describe usuario;
+insert into usuario values('1231',1028481760,'Mafe','valeriano','calle10',' '),('5264',52537135,'ruth','pulido','calle15',3173613339);
+select *from usuario;
+
+alter table producto
+drop cedulaClienteFK;
+describe producto;
+insert into producto values('78','45hg','jabon','suavitel',10.000),('72','45jh','detergente','ak',15.000);
+
+
+/*un cliente puede tener muchas ordenes*/
+/*un usuario puede generar muchas ordenes*/
+/*una orden muchos productos*/
+/*un producto puede ser comprado muchas veces*/
