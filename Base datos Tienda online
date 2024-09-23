@@ -1,0 +1,61 @@
+create database BDtiendaOnline;
+use BDtiendaOnline;
+
+create table Producto (
+codB int primary key,
+idProducto int auto_increment unique
+);
+
+create table Cliente (
+idCliente int auto_increment primary key
+);
+
+create table Usuario (
+idUsuario int primary key
+);
+
+create table Producto_Venta(
+idOrdenFK int,
+codBFK int,
+codigoVenta int
+);
+
+create table Venta (
+idOrden int primary key,
+idUsuarioFK int,
+idClienteFK int,
+idVentas int auto_increment unique
+);
+
+alter table Venta 
+add constraint FKidUsuario
+foreign key (idUsuarioFK)
+references Usuario(idUsuario);
+
+alter table Venta 
+add constraint FKidCliente
+foreign key (idClienteFK)
+references Cliente(idCliente);
+
+alter table Producto_Venta
+add constraint FKcodB
+foreign key (codBFK)
+references Producto(codB);
+
+alter table Producto_venta 
+add constraint FKidOrden
+foreign key (idOrdenFK)
+references Venta(idOrden);
+
+alter table Cliente add nombreCliente int (10);
+alter table Usuario add nombreUsuario int (10);
+ 
+ alter table Cliente change column nombreCliente nomCliente varchar(10);
+ alter table Usuario change column nombreUsuario nomUsuario varchar(10);
+ 
+ select * from Cliente;
+ 
+ insert into Cliente values('4','Maria');
+ insert into Producto values ('10142478','');
+ insert into Usuario values ('1234527','Camilo');
+ insert into Venta values ('1','1234526','4','');
