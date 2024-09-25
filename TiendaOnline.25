@@ -1,0 +1,166 @@
+create database TiendaOnline;
+use TiendaOnline;
+
+create table Producto(
+idProducto int(20) not null,
+nombreProducto varchar(50),
+CodBarras varchar(30) primary key,
+precioProducto float not null,
+Marca varchar (15),
+cedulaClienteFK int(11) not null unique
+);
+drop table Producto;
+
+create table Usuario(
+idUsuario int primary key not null,
+cedulaUsuario int(11),
+nombreUsuario varchar(15)null,
+apellidoUsuario varchar(15)null,
+direccionUsuario varchar (10)null,
+telefonoUsuario int(10) null
+);
+
+create table Cliente(
+idCliente int primary key,
+cedulaCliente int(11)  not null,
+nombreCliente varchar(15)null,
+apellidoCliente varchar(15)null,
+direccionCliente varchar(10)null,
+telefonoCliente int(10) null
+);
+
+create table Venta(
+idUsuarioFK int (20) not null unique,
+idClienteFK int (20)  not null unique,
+idVenta int(20) not null, 
+numOrdenFK varchar(20) primary key ,
+fechaVenta date not null,
+totalCompra int (100) not null
+);
+drop table Venta;
+
+create table ProducVenta(
+numOrdenFK varchar(20) not null,  /*Agregar cantidad,id Productventa,idVentaFK,idProductoFK*/
+CodBarras varchar(30) not null,
+Total varchar(15)
+);
+
+/*RELACIONES*/
+
+alter table Venta
+add constraint FKUsuVenta
+foreign key (idUsuarioFK)
+references Usuario(idUsuario);
+
+alter table Venta
+add constraint FKClienteVenta
+foreign key (idClienteFK)
+references Cliente(idCliente);
+
+alter table ProducVenta
+add constraint FKProducVenta
+foreign key (numOrdenFK)
+references Venta(numOrdenFK);
+
+alter table ProducVenta
+add constraint prodventa
+foreign key (CodBarras)
+references Producto (CodBarras);
+
+/*INSERCIONES*/
+
+select * from Producto;
+insert into Producto values('1','Libro','789584404175','70.000','Penguin','1005691221');
+insert into Producto values('25','Silla','561290341237','50.000','Rimax','1021665336');
+insert into Producto values('17','Shampoo','1298546','15.000','Herbal Essences','1000546789');
+insert into Producto values('93','Hoodie','9875342','89.900','H&M','1006600987');
+
+select * from Usuario;
+insert into Usuario values('32','1006600625','Rosa','Galicia','Candelaria','3145753229');
+insert into Usuario values('11','1110564738','Valentina','Vahos','Chapinero','3161031622');
+insert into Usuario values('3','1021665336','Carlos','Galan','Colina','3163881131');
+insert into Usuario values('5','1234668739','Jennifer','Rivera','Dsoquebradas','3143697906');
+
+select * from Cliente;
+insert into Cliente values('15','36290658','Adriana','Jimenez','La floresta','3152904536');
+insert into Cliente values('100','6004211','Pedro','Galicia','La floresta','3006063449');
+insert into Cliente values('8','1007600625','Diana','Galicia','Campo hermoso','3232392751');
+insert into Cliente values('25','1234644904','Eveling','Galicia','La floresta','3152904536');
+
+select * from Venta;
+insert into Venta values('32','15','1354','100','2024-05-15','15000');
+insert into Venta values('56','10','2656','12','2023-08-30','88000');
+insert into Venta values('3','8','453627','600','2022-08-24','12500');
+insert into Venta values('5','25','34256','100','2024-03-13','19900');
+
+select * from ProducVenta;
+insert into ProducVenta values('100','789584404175','70000');
+insert into ProducVenta values('12','561290341237','50000');
+insert into ProducVenta values('600','1298546','15000');
+insert into ProducVenta values('100','9875342','89900');
+
+/*Consultas*/
+
+/*Consulta general todos los productos*/
+select * from Producto;
+
+/*Ordenar productos precio menor a mayor*/
+select * from Producto
+order by precioProducto asc;
+
+/*Consultar clientes que nacieron en enero*/
+/*select * from Cliente*/
+/*where month (fechaNacimiento) = 1; No tenemos campo de fecha nacimiento en clientes*/
+
+/*Usuarios con rol empleado*/
+/*select * from Usuario
+where rol = 'Empleado' no tenemos roles en usuarios*/ 
+
+/*Ordenes entre marzo y junio*/
+select * from Venta
+where month (fechaVenta) between 03 and 06;
+
+/*Productos que tengan letra 'r'*/
+select * from Producto 
+where nombreProducto like '%r%';
+
+/*Promedio de ventas*/
+select avg (totalCompra) as PromedioVentas
+from Venta;
+
+/*Cantidad de clientes*/
+select count(*) as CantidadClientes
+from Cliente;
+
+/*Venta mas economica realizada*/
+
+select * from Venta
+where totalCompra = (select min(totalCompra) from Venta);
+
+/*Consulta multitabla*/
+/*inner join*/
+select * from Venta 
+inner join Cliente on Venta.idClienteFK = Cliente.idCliente; 
+
+/*
+select m.*,c.nombreCliente,p.nombreProducto
+from mascota m 
+join cliente c on m.idMascota = c.idMascotaFK
+join producto p on p.cedulaClienteFK=c.cedulaCliente; */
+
+/* consultar cliente de maxima venta hecha*/
+select c.*, v.totalCompra
+from Cliente c
+inner join Venta v on c.idCliente = v.idClienteFK
+where v.totalCompra = (select max(totalCompra) from Venta);
+
+/* Arreglar la tabla product venta para que esta sentencia funcione cliente de maxima venta hecha*/
+select cliente.nombreCliente,venta.idClienteFK,ProducVenta.total
+from Venta
+inner join Cliente on cliente.idCliente=venta.idClienteFK
+inner join ProductVenta on venta.idVenta = ProductVenta.idVentaFK
+where totalCompra= max(totalCompra);
+
+/*Consultar usuario y cliente de una venta especifica*/
+/*Consultar los productos que compró un cliente especifico*/
+/*Consultar todos los clientes que han hecho compras/ventas*/
