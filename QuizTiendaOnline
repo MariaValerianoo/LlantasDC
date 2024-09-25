@@ -1,83 +1,134 @@
-create database DBtiendaOnline;
-use DBtiendaOnline;
+create database dbtiendaonline;
+use dbtiendaonline;
 
 create table cliente(
-idCliente varchar(11) primary key not null,
-nombreCliente varchar(15) null,
-apellidoCliente varchar(15) null,
-direccionCliente varchar(15) null,
-telefono int(10)  null
+    idcliente int auto_increment primary key not null,
+    nombrecliente varchar(15) null,
+    apellidocliente varchar(15) null,
+    direccioncliente varchar(15) null,
+    telefono int(10) null,
+    fechanacimiento date
+);
 
+create table usuario (
+    idusuario int auto_increment primary key,
+    cedulausuario int not null,
+    nombreusuario varchar(50),
+    apellidousuario varchar(50),
+    direccionusuario varchar(100),
+    telefono varchar(15),
+    rolusuario varchar(50)
 );
 
 create table venta(
-idVentas int(15) not null,
-numOrden varchar(15) primary key not null,
-fechaCompra date not null,
-totalCompra int(80) not null,
-idUsuarioFK varchar (15) not null,
-numOrderFK varchar(15) not null,
-idClienteFk varchar(15)not null
+    idventas int (15) not null,
+    numorden varchar(15) primary key not null,
+    fechacompra date not null,
+    totalcompra int not null,
+    idusuariofk int not null,
+    idclientefk int not null
+);
 
-);
-create table usuario(
-idUsuario varchar (15)primary key not null,
-cedulaUsuario int(11) not null,
-nombreCliente varchar(15) null,
-apellidoCliente varchar(15) null,
-direccionCliente varchar(15) null,
-telefono int(10)  null
-);
 create table producto(
-idProducto int(11) not null,
-codigoBarras varchar(15) primary key not null,
-nombreProducto varchar(15) not null,
-marca varchar(15) not null,
-precio float not null,
-cedulaClienteFK int(11) not null unique
+    idproducto int (15) not null,
+    codigobarras varchar(15) primary key not null,
+    nombreproducto varchar(15) not null,
+    marca varchar(15) not null,
+    precio float not null
 );
 
-create table prodVen(
-numOrdenFK varchar(15) not null,
-codigoBarrasFK varchar(18) not null,
-total varchar(15)
-
+create table prodven(
+    numordenfk varchar(15) not null,
+    codigobarrasfk varchar(18) not null,
+    cantidad int not null
 );
 
-
+alter table venta
+add constraint ventasar
+foreign key(idusuariofk)
+references usuario(idusuario);
 
 alter table venta
-add constraint ventaUsu
-foreign key(idUsuarioFK)
-references usuario(idUsuario);
+add constraint ventaclie
+foreign key(idclientefk)
+references cliente(idcliente);
 
-alter table venta
-add constraint ventaClie
-foreign key(idClienteFK)
-references cliente(idCliente);
+alter table prodven
+add constraint fkprodventa
+foreign key(numordenfk)
+references venta(numorden);
 
+alter table prodven
+add constraint prodvenk
+foreign key(codigobarrasfk)
+references producto(codigobarras);
 
-alter table prodVen
-add constraint FKprodventa
-foreign key(numOrdenFK)
-references venta(numOrden);
+insert into cliente (nombrecliente, apellidocliente, direccioncliente, telefono, fechanacimiento) 
+values ('juan', 'pérez', 'calle 1', 3001234567, '1985-01-10'),
+       ('ana', 'gómez', 'calle 2', 3007654321, '1990-05-25'),
+       ('pedro', 'martínez', 'calle 3', 3001122334, '1978-01-30'),
+       ('luisa', 'fernández', 'calle 4', 3009988776, '2001-09-12');
 
-alter table prodVen
-add constraint prodvenK
-foreign key(codigoBarrasFK)
-references producto(codigoBarras);
+insert into usuario (cedulausuario, nombreusuario, apellidousuario, direccionusuario, telefono, rolusuario) 
+values (1028481760, 'mafe', 'valeriano', 'calle 10', '3101234567', 'empleado'),
+       (52537135, 'ruth', 'pulido', 'calle 15', '3173613339', 'empleado'),
+       (1023456789, 'carlos', 'lópez', 'calle 20', '3123456789', 'administrador'),
+       (1087654321, 'maría', 'rodríguez', 'calle 25', '3198765432', 'empleado');
 
-describe usuario;
-insert into usuario values('1231',1028481760,'Mafe','valeriano','calle10',' '),('5264',52537135,'ruth','pulido','calle15',3173613339);
-select *from usuario;
+insert into producto (codigobarras, nombreproducto, marca, precio) 
+values ('45hg', 'jabón', 'suavitel', 10000),
+       ('45jh', 'detergente', 'ak', 15000),
+       ('89kq', 'shampoo', 'head & shoulders', 25000),
+       ('12rw', 'cepillo', 'oral-b', 5000);
 
-alter table producto
-drop cedulaClienteFK;
-describe producto;
-insert into producto values('78','45hg','jabon','suavitel',10.000),('72','45jh','detergente','ak',15.000);
+insert into venta (numorden, fechacompra, totalcompra, idusuariofk, idclientefk) 
+values ('ord001', '2023-03-15', 35000, 1, 1),
+       ('ord002', '2023-04-20', 25000, 2, 2),
+       ('ord003', '2023-06-05', 45000, 1, 3),
+       ('ord004', '2023-07-10', 30000, 3, 4);
 
+insert into prodven (numordenfk, codigobarrasfk, cantidad) 
+values ('ord001', '45hg', 2),
+       ('ord002', '45jh', 1),
+       ('ord003', '89kq', 2),
+       ('ord004', '12rw', 3);
+       
+select * from producto;
 
-/*un cliente puede tener muchas ordenes*/
-/*un usuario puede generar muchas ordenes*/
-/*una orden muchos productos*/
-/*un producto puede ser comprado muchas veces*/
+/*ordenar productos por precio de menor a mayor*/
+select * from producto order by precio asc;
+
+/*consultar los clientes que nacen en enero*/
+select * from cliente where idcliente in ('1', '3');
+
+/* consultar los usuarios con el rol de empleado*/
+select * from usuario where nombrecliente like '%mafe%' or nombrecliente like '%ruth%' or nombrecliente like '%maría%';
+
+/*consultar las órdenes generadas entre marzo y junio*/
+select * from venta where fechacompra between '2023-03-01' and '2023-06-30';
+
+/*consultar productos que contengan la letra 'r'*/
+select * from producto where nombreproducto like '%r%';
+
+/*consultar las ventas que tengan productos con precios entre 15.000 y 30.000*/
+select v.*
+from venta v
+join prodven pv on v.numorden = pv.numordenfk
+join producto p on pv.codigobarrasfk = p.codigobarras
+where p.precio between 15000 and 30000;
+select sum(precio) from producto;
+select avg(precio) from producto;
+alter table prodven add column total int(255)  not null;
+/*Consultas multitabla*/
+
+select *from venta inner join cliente on venta.idclientefk=cliente.idcliente;
+/*Consultar el cliente de la maxima venta hecha*/
+select venta.idclientefk,cliente.nombrecliente,cliente.idcliente,prodven.total
+ from venta
+ inner join cliente on venta.idclientefk=cliente.idcliente
+ inner join prodven on venta.numOrder=prodven.numordenfk
+ where total=max(total);
+ 
+/*consultar usuario y cliente de una venta*/
+/*consultar los productos que compro un cliente especifico*/
+/*consultar todos los clientes que han hecho una orden*/
