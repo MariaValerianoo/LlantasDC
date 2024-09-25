@@ -142,3 +142,6 @@ from Venta v
 inner join cliente c on c.idCliente = v.idClienteFK
 inner join prodven pr on v.numOrden=pr.numOrdenFK
 where total= max(total);
+
+
+-- EJEMPLO DE ALGO ASI
