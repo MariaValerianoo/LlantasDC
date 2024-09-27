@@ -38,9 +38,14 @@ fechaVenta date not null,
 totalCompra int (100) not null
 );
 drop table Venta;
+drop table ProducVenta;
 
 create table ProducVenta(
-numOrdenFK varchar(20) not null,  /*Agregar cantidad,id Productventa,idVentaFK,idProductoFK*/
+idProductVenta int primary key,
+idVentaFK int(20) not null,
+idProductoFK int (20) not null,
+Cantidad int(100) not null,
+numOrdenFK varchar(20) not null,  
 CodBarras varchar(30) not null,
 Total varchar(15)
 );
@@ -70,35 +75,36 @@ references Producto (CodBarras);
 /*INSERCIONES*/
 
 select * from Producto;
-insert into Producto values('1','Libro','789584404175','70.000','Penguin','1005691221');
+insert into Producto values('15','Enterizo bebe','8903456','60000','Pepe Ganga','45678345');
 insert into Producto values('25','Silla','561290341237','50.000','Rimax','1021665336');
 insert into Producto values('17','Shampoo','1298546','15.000','Herbal Essences','1000546789');
 insert into Producto values('93','Hoodie','9875342','89.900','H&M','1006600987');
+insert into Producto values('1','Libro','789584404175','70000','Penguin','1005691221');
 
 select * from Usuario;
-insert into Usuario values('32','1006600625','Rosa','Galicia','Candelaria','3145753229');
+insert into Usuario values('32','1005691221','Rosa','Galicia','Candelaria','3145753229');
 insert into Usuario values('11','1110564738','Valentina','Vahos','Chapinero','3161031622');
 insert into Usuario values('3','1021665336','Carlos','Galan','Colina','3163881131');
 insert into Usuario values('5','1234668739','Jennifer','Rivera','Dsoquebradas','3143697906');
 
 select * from Cliente;
 insert into Cliente values('15','36290658','Adriana','Jimenez','La floresta','3152904536');
-insert into Cliente values('100','6004211','Pedro','Galicia','La floresta','3006063449');
+insert into Cliente values('105','45673829','Tatiana','Cabrera','Zona norte','3144606918');
 insert into Cliente values('8','1007600625','Diana','Galicia','Campo hermoso','3232392751');
 insert into Cliente values('25','1234644904','Eveling','Galicia','La floresta','3152904536');
 
+
 select * from Venta;
-insert into Venta values('32','15','1354','100','2024-05-15','15000');
-insert into Venta values('56','10','2656','12','2023-08-30','88000');
-insert into Venta values('3','8','453627','600','2022-08-24','12500');
-insert into Venta values('5','25','34256','100','2024-03-13','19900');
+insert into Venta values('47','15','1354','101','2024-05-15','15000');
+insert into Venta values('56','10','2656','18','2023-08-30','88000');
+insert into Venta values('33','89','453626','602','2022-08-24','12500');
+insert into Venta values('5','25','34256','118','2024-03-13','19900');
 
 select * from ProducVenta;
-insert into ProducVenta values('100','789584404175','70000');
-insert into ProducVenta values('12','561290341237','50000');
-insert into ProducVenta values('600','1298546','15000');
-insert into ProducVenta values('100','9875342','89900');
-
+insert into ProducVenta values('101','1354','1','1','100','789584404175','70000');
+insert into ProducVenta values('18','2656','25','2','12','561290341237','50000');
+insert into ProducVenta values('602','453626','17','1','600','1298546','15000');
+insert into ProducVenta values('119','34256','93','1','100','9875342','89900');
 /*Consultas*/
 
 /*Consulta general todos los productos*/
@@ -149,18 +155,62 @@ join cliente c on m.idMascota = c.idMascotaFK
 join producto p on p.cedulaClienteFK=c.cedulaCliente; */
 
 /* consultar cliente de maxima venta hecha*/
-select c.*, v.totalCompra
-from Cliente c
-inner join Venta v on c.idCliente = v.idClienteFK
+select c.nombreCliente, v.totalCompra, pv.total 
+from Venta v
+inner join Cliente c on c.idCliente = v.idClienteFK
+inner join ProducVenta pv on v.idVenta = pv.idVentaFK
 where v.totalCompra = (select max(totalCompra) from Venta);
 
+
 /* Arreglar la tabla product venta para que esta sentencia funcione cliente de maxima venta hecha*/
-select cliente.nombreCliente,venta.idClienteFK,ProducVenta.total
-from Venta
-inner join Cliente on cliente.idCliente=venta.idClienteFK
-inner join ProductVenta on venta.idVenta = ProductVenta.idVentaFK
-where totalCompra= max(totalCompra);
+select c.nombreCliente, v.totalCompra, pv.Total 
+from Venta v
+inner join Cliente c on c.idCliente = v.idClienteFK
+inner join ProducVenta pv on v.numOrdenFK = pv.numOrdenFK
+where v.totalCompra = (select max(totalCompra) from Venta);
 
 /*Consultar usuario y cliente de una venta especifica*/
+
+select v.idVenta, v.numOrdenFK, u.nombreUsuario, u.apellidoUsuario, c.nombreCliente, c.apellidoCliente
+from Venta v
+inner join Usuario u on v.idUsuarioFK = u.idUsuario
+inner join Cliente c on v.idClienteFK = c.idCliente
+where v.numOrdenFK = '18';
+
+
 /*Consultar los productos que compró un cliente especifico*/
+select c.nombreCliente, p.nombreProducto, pv.Cantidad, pv.Total
+from Cliente c
+inner join Venta v on c.idCliente = v.idClienteFK
+inner join ProducVenta pv on v.numOrdenFK = pv.numOrdenFK
+inner join Producto p on pv.CodBarras = p.CodBarras
+WHERE c.idCliente = 100;
+
 /*Consultar todos los clientes que han hecho compras/ventas*/
+select c.idCliente, c.nombreCliente, c.apellidoCliente, c.cedulaCliente, c.direccionCliente, c.telefonoCliente
+from  Cliente c
+inner join Venta v on c.idCliente = v.idClienteFK;
+
+/*MODIFICACIONES*/
+/*Modificacion registrar tatiana como cliente, registrar producto ropa de bebe ,registrarnos como usuarios bd ,generar una venta para tatiana*/
+/*Registrar a tatiana como cliente*/
+
+update Cliente
+set nombreCliente = 'Tatiana', cedulaCliente = '55163118'
+where idCliente = 105;
+select * from Cliente;
+
+SELECT * FROM Usuario;
+
+/*Registrar producto bebe*/
+select * from Producto ;
+update Producto
+set nombreProducto = 'Enterizo bebe', precioProducto = 60000
+where CodBarras = '8903456';
+
+/*Generar venta para tatiana de producto enterizo bebe*/
+/*ARREGLAR PORQUE SALE VACIO*/
+select * from Venta;
+update Venta
+set idUsuarioFK = '32', idClienteFK = '105'
+where numOrdenFK = '20240927';
