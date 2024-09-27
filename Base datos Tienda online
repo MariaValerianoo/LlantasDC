@@ -144,4 +144,23 @@ inner join prodven pr on v.numOrden=pr.numOrdenFK
 where total= max(total);
 
 
--- EJEMPLO DE ALGO ASI
+/*consultar usuario y cliente de una venta*/
+select v.numorden, u.nombreusuario, u.apellidousuario, c.nombrecliente, c.apellidocliente
+from venta v
+inner join usuario u on v.idusuariofk = u.idusuario
+inner join cliente c on v.idclientefk = c.idcliente
+where v.numorden = 'ord001'; 
+
+
+/*consultar los productos que compro un cliente especifico*/
+select c.nombrecliente, c.apellidocliente, p.nombreproducto, p.marca, p.precio
+from venta v
+inner join cliente c on v.idclientefk = c.idcliente
+inner join prodven pv on v.numorden = pv.numordenfk
+inner join producto p on pv.codigobarrasfk = p.codigobarras
+where c.idcliente = 1; 
+
+/*consultar todos los clientes que han hecho una orden*/
+select nombrecliente from cliente
+inner join venta on cliente.idcliente = venta.idclientefk;
+
