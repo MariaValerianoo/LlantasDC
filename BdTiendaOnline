@@ -149,3 +149,32 @@ where c.idcliente = 1;
 select nombrecliente from cliente
 inner join venta on cliente.idcliente = venta.idclientefk;
 
+/*Modificaciones: Ajustar la informacion que nosotros escribamos mal*/
+/*Modificar update nombreTabla set campoamodificar='nuevovalor';*/
+insert into cliente (idcliente,nombrecliente, apellidocliente, direccioncliente, telefono, fechanacimiento) 
+values(45,'tatiana', 'cabrera', 'calle 7', 3222045689, '1980-07-13');
+insert into producto (idproducto,codigobarras, nombreproducto, marca, precio) 
+values (15,'78yu', 'mameluco', 'babyshow', 5000);
+insert into usuario (cedulausuario, nombreusuario, apellidousuario, direccionusuario, telefono, rolusuario) 
+values (1014661499, 'maria', 'pulido', 'calle 85', '3103305802', 'empleado');
+describe venta;
+insert into venta (idventas, numorden, fechacompra, totalcompra, idusuariofk, idclientefk) 
+values (18,'ord005', '2024-09-27', 5000, 5, 5);
+insert into prodven (numordenfk, codigobarrasfk, cantidad) 
+values ('ord005', '78yu', 1);
+describe cliente;
+select*from cliente;
+update cliente set apellidocliente='Cabrera Vargas', direccioncliente='cll 104#13-14',
+telefono='3144606918'
+where idcliente=5; 
+update cliente set fechanacimiento='1985-11-24' where idcliente=5; 
+update cliente set idcliente=55163118 where idcliente=5; 
+select*from producto;
+describe producto;
+update venta set idventas='20240927' where idusuariofk=5;
+/*eliminacion*/
+delete from venta where idusuariofk=5;
+insert into cliente (nombrecliente, apellidocliente, direccioncliente, telefono, fechanacimiento) 
+values('tatiana', 'cabrera vargas', 'cll 104#13-14', 3144606918, '1985-11-24');
+
+
