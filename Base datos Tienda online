@@ -164,3 +164,27 @@ where c.idcliente = 1;
 select nombrecliente from cliente
 inner join venta on cliente.idcliente = venta.idclientefk;
 
+/*Modificaciones 
+update tabla set campo='nombrecampo' where condicion */
+
+insert into Cliente (nombrecliente, apellidocliente, direccioncliente, telefono) values ('Tatiana', 'Cabrera', 'Calle 13',3107626845);
+
+select * from Venta;
+
+insert into Producto (codigobarras, nombreProducto, marca, precio) values ('13kg','Pijama bebe', 'offcors',20000);
+
+insert into Venta (numorden, fechacompra, totalcompra, idusuariofk, idclientefk) values ('ord005','2024-09-27',20000,3,5);
+
+update Cliente set fechanacimiento='1985-11-24', telefono='314460691', direccionCliente='Calle 104' where idCliente= 5;
+
+alter table Venta change column idventas idventas varchar(255);
+
+update Venta set idVentas='2024-09-27' where idClienteFK= 5;
+
+/*Eliminaciones
+delete from tabla where condicion*/
+select * from Cliente;
+insert into Cliente (idCliente,nombrecliente, apellidocliente, direccioncliente, telefono,fechanacimiento) values (551,'Tatiana','Cabrera','Calle 104',314460691,'1985-11-24');
+update Venta set idClienteFK= 551 where idClienteFK= 5;
+select * from Venta;
+delete from Cliente where idCliente= 5;
