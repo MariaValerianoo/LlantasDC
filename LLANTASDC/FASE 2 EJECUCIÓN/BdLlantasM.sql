@@ -1,0 +1,2 @@
+insert into cliente (rutcliente, nombretercero, tipoidentificacion, direccioncliente, ciudadcliente, telefono,nombrecontacto) 
+values('900769308-9','A&E CONTAINER S.A.S','NIT','CL 10 N 14 A 85 SUR TO 9 AP 733','Mosquera',6018938608,'A&E CONTAINER S.A.S'),
