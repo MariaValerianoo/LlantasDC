@@ -188,3 +188,23 @@ insert into Cliente (idCliente,nombrecliente, apellidocliente, direccioncliente,
 update Venta set idClienteFK= 551 where idClienteFK= 5;
 select * from Venta;
 delete from Cliente where idCliente= 5;
+DELIMITER //
+CREATE PROCEDURE registarProducto(idProducto int,codigoBarras varchar(15),nombreProducto varchar(15),marca varchar(15),precio float)
+BEGIN 
+insert into Producto  values (idProducto, codigoBarras, nombreProducto, marca, precio);
+END //
+DELIMITER ;
+
+DROP PROCEDURE registarProducto;
+
+call registarProducto(7,'23jk','Marcadores','Magistral',2000);
+select * from Producto;
+/*ELIMINAR: drop procedure registrarProducto*/
+/*ELIMAR Y VOLVER A CREAR*/
+
+update Producto set nombreProducto='Marcador' WHERE codigoBarras=6;
+
+create view consultarCliente as 
+select * from Cliente;
+
+select * from consultarCliente;
