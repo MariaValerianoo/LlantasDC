@@ -177,4 +177,107 @@ delete from venta where idusuariofk=5;
 insert into cliente (nombrecliente, apellidocliente, direccioncliente, telefono, fechanacimiento) 
 values('tatiana', 'cabrera vargas', 'cll 104#13-14', 3144606918, '1985-11-24');
 
+/*Procedimientos almacenados->subrutinas almacenar la informacion en la bd
+delimiter//
+create procedure nombre_procedimiento(parametro)
+BEGIN
+--lOGICA DE LA SENTENCIA QUE SE QUIERA UTILIZAR
+END//
+*/
+Delimiter //
+create procedure registrar_producto(idproducto int,codigobarras varchar(15),nombreproducto varchar(15),marca varchar(15),precio float)
+begin
+insert into producto values (idproducto,codigobarras,nombreproducto,marca,precio);
+end//
+delimiter ;
+call registrar_producto('48','15ghjk','jabón perros','tupee',15000);
+delete from producto where codigobarras='15ghjk';
+select*from producto;
+describe producto;
+drop procedure registrar_producto;
 
+/*procedimiento para inactivar cliente*/
+alter table cliente add estado varchar(10) default 'activo';
+
+delimiter //
+create procedure inactivar_cliente(in id_cliente int)
+begin
+    update cliente
+    set estado = 'inactivo'
+    where idcliente = id_cliente;
+end //
+delimiter ;
+call inactivar_cliente(1); -- inactiva el cliente con id = 1
+
+
+/*-consultar productos que ah comprado un cliente*/
+delimiter //
+create procedure consultar_productos_comprados(in id_cliente int)
+begin
+    select c.nombrecliente, c.apellidocliente, p.nombreproducto, p.marca, p.precio
+    from venta v
+    inner join cliente c on v.idclientefk = c.idcliente
+    inner join prodven pv on v.numorden = pv.numordenfk
+    inner join producto p on pv.codigobarrasfk = p.codigobarras
+    where c.idcliente = id_cliente;
+end //
+delimiter ;
+call consultar_productos_comprados(1);
+
+
+/*modificar fecha de nacimiento cliente*/
+delimiter //
+create procedure modificar_fecha_nacimiento(in id_cliente int, in nueva_fecha date)
+begin
+    update cliente
+    set fechanacimiento = nueva_fecha
+    where idcliente = id_cliente;
+end //
+delimiter ;
+call modificar_fecha_nacimiento(1, '1992-04-25');
+
+/*-vista que consulte que cliente compro un producto y cual fue su numero de orden*/
+create view vista_cliente_producto as
+select c.nombrecliente, c.apellidocliente, p.nombreproducto, v.numorden
+from cliente c
+join venta v on c.idcliente = v.idclientefk
+join prodven pv on v.numorden = pv.numordenfk
+join producto p on pv.codigobarrasfk = p.codigobarras;
+select * from vista_cliente_producto;
+
+/*-vista que muestre el cliente que mas compras alla hecho*/
+create view cliente_mas_compras as
+select c.idcliente, c.nombrecliente, c.apellidocliente, count(v.numorden) as total_compras
+from cliente c
+join venta v on c.idcliente = v.idclientefk
+group by c.idcliente, c.nombrecliente, c.apellidocliente
+order by total_compras desc
+limit 1;
+select * from cliente_mas_compras;
+
+/*Sub consultas: son consultas anidadas dentro de otra consulta
+select campo2,campo3 from tablagrande 
+where columna2=(select columna2x from tablapequeña where condicion);
+*/
+/*consultar los datos de los empleados y su sueldo promedio*/
+select idempleado,nombreempleado,salario,(select avg(salario)  from empleado) as promedio
+from empleado;
+/*consultar el empleado que tenga un salario mayor que el salario promedio*/
+select idempleado,nombreempleado,salario from empleado where salario>(select avg(salario)  from empleado);
+
+/*consultar a que area pertenece un empleado*/
+select idempleado,nombreempleado,idArea,nombreArea
+from empleado
+where idArea in (select idArea from area where nombreempleado='juan');
+
+/*calcular los productos que se vendan a un precio mayor del promedio de todos los productos*/
+
+select idproducto,nombreproducto,precio from producto where precio>(select avg(precio)  from producto);
+
+/*Mostrar los clientes que el total de compra sea mayor al promedio de compras de la tienda*/
+select idcliente,nombrecliente,totalcompra
+from cliente
+where totalcompra in (select totalcompra from venta where select avg(totalcompra));
+/*Mostrar el promedio de precios de productos comprados por clientes*/
+select idproducto,precio,nombreproducto(select avg(precio)  from producto) as promedio
+from producto;
