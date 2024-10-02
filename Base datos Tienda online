@@ -200,7 +200,7 @@ DROP PROCEDURE registarProducto;
 call registarProducto(7,'23jk','Marcadores','Magistral',2000);
 select * from Producto;
 /*ELIMINAR: drop procedure registrarProducto*/
-/*ELIMAR Y VOLVER A CREAR*/
+
 
 update Producto set nombreProducto='Marcador' WHERE codigoBarras=6;
 
