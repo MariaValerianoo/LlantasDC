@@ -88,3 +88,202 @@ db.usuarios.find()
   correo: 'ana.lopez@urosario.com'
 }
 db.usuarios.deleteMany({ edad: { $lt: 30 } })
+
+db.createCollection("productos")
+{ ok: 1 }
+show collections
+productos
+usuarios
+	use tallerMongoDB
+already on db tallerMongoDB
+db.productos.insertMany([
+  { nombre: "Televisor", precio: 450, categoria: "Electrónica" },
+  { nombre: "Sofá", precio: 300, categoria: "Hogar" },
+  { nombre: "Camiseta", precio: 25, categoria: "Ropa" },
+  { nombre: "Celular", precio: 600, categoria: "Electrónica" },
+  { nombre: "Microondas", precio: 150, categoria: "Hogar" }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6732bb4c28ab894f846feba3'),
+    '1': ObjectId('6732bb4c28ab894f846feba4'),
+    '2': ObjectId('6732bb4c28ab894f846feba5'),
+    '3': ObjectId('6732bb4c28ab894f846feba6'),
+    '4': ObjectId('6732bb4c28ab894f846feba7')
+  }
+}
+db.productos.deleteMany({})
+{
+  acknowledged: true,
+  deletedCount: 5
+}
+db.productos.find().pretty()
+show collections
+productos
+usuarios
+db.productos.insertMany([
+  { nombre: "Televisor", precio: 400, categoria: "Electrónica" },
+  { nombre: "Hoodie", precio: 20, categoria: "Hogar" },
+  { nombre: "Computador", precio: 1000, categoria: "Electrónica" },
+  { nombre: "Celular", precio: 900, categoria: "Electrónica" },
+  { nombre: "Olla ", precio: 15, categoria: "Hogar" }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6732bc0628ab894f846feba8'),
+    '1': ObjectId('6732bc0628ab894f846feba9'),
+    '2': ObjectId('6732bc0628ab894f846febaa'),
+    '3': ObjectId('6732bc0628ab894f846febab'),
+    '4': ObjectId('6732bc0628ab894f846febac')
+  }
+}
+db.productos.find({ precio: { $gt: 100 } })
+{
+  _id: ObjectId('6732bc0628ab894f846feba8'),
+  nombre: 'Televisor',
+  precio: 400,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febaa'),
+  nombre: 'Computador',
+  precio: 1000,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febab'),
+  nombre: 'Celular',
+  precio: 900,
+  categoria: 'Electrónica'
+}
+db.productos.find().sort({ precio: -1 })
+{
+  _id: ObjectId('6732bc0628ab894f846febaa'),
+  nombre: 'Computador',
+  precio: 1000,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febab'),
+  nombre: 'Celular',
+  precio: 900,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846feba8'),
+  nombre: 'Televisor',
+  precio: 400,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846feba9'),
+  nombre: 'Hoodie',
+  precio: 20,
+  categoria: 'Hogar'
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febac'),
+  nombre: 'Olla ',
+  precio: 15,
+  categoria: 'Hogar'
+}
+db.productos.updateMany({}, { $set: { enStock: true } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+db.productos.updateMany({ precio: { $gt: 500 } }, { $set: { enStock: false } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+db.productos.deleteMany({ precio: { $lt: 50 } })
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+	db.productos.find().pretty()
+{
+  _id: ObjectId('6732bc0628ab894f846feba8'),
+  nombre: 'Televisor',
+  precio: 400,
+  categoria: 'Electrónica',
+  enStock: true
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febaa'),
+  nombre: 'Computador',
+  precio: 1000,
+  categoria: 'Electrónica',
+  enStock: false
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febab'),
+  nombre: 'Celular',
+  precio: 900,
+  categoria: 'Electrónica',
+  enStock: false
+}
+
+db.productos.aggregate([
+  { $group: { _id: "$categoria", promedioPrecio: { $avg: "$precio" } } }
+])
+{
+  _id: 'Electrónica',
+  promedioPrecio: 766.6666666666666
+}
+db.productos.aggregate([])
+{
+  _id: ObjectId('6732bc0628ab894f846feba8'),
+  nombre: 'Televisor',
+  precio: 400,
+  categoria: 'Electrónica',
+  enStock: true
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febaa'),
+  nombre: 'Computador',
+  precio: 1000,
+  categoria: 'Electrónica',
+  enStock: false
+}
+{
+  _id: ObjectId('6732bc0628ab894f846febab'),
+  nombre: 'Celular',
+  precio: 900,
+  categoria: 'Electrónica',
+  enStock: false
+}
+db.productos.aggregate([
+  { $group: { _id: "$categoria", promedioPrecio: { $avg: "$precio" } } },
+  { $sort: { promedioPrecio: -1 } },
+  { $limit: 1 }
+])
+{
+  _id: 'Electrónica',
+  promedioPrecio: 766.6666666666666
+}
+db.productos.aggregate([
+  {
+    $group: {
+      _id: "$categoria",
+      totalProductos: { $sum: 1 }
+    }
+  }
+])
+
+{
+  _id: 'Electrónica',
+  totalProductos: 3
+}
+db.productos.find({ nombre: { $regex: "cel", $options: "i" } })
+
+
