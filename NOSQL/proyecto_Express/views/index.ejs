@@ -3,37 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <h1>Lista de Productos</h1>
     <table border="1" id="table">
       <thead>
         <tr>
           <th>ID</th>
           <th>Foto</th>
-          <th>Nombres</th>
-          <th>Apellidos</th>
-          <th>Correo</th>
-          <th>Rol</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
         </tr>
       </thead>
       <tbody>
-        <% usuarios.forEach(function(usuario){ %>
+        <% productos.forEach(function(producto){ %>
         <tr>
-          <td><%= usuario._id %></td>
+          <td><%= producto._id %></td>
           <td>
             <img
               class="photo"
-              width="38"
-              src="https://ui-avatars.com/api/?name=<%= usuario.name %>+<%= usuario.lastname %>?background=random"
-              alt=""
+              width="100"
+              src="<%= producto.photo %>"  <!-- Usando el enlace de la foto del producto -->
+              alt="<%= producto.name %>"
             />
           </td>
-          <td><%= usuario.name %></td>
-          <td><%= usuario.lastname %></td>
-          <td><%= usuario.email %></td>
-          <td><%= usuario.role %></td>
+          <td><%= producto.name %></td>
+          <td><%= producto.description %></td>
+          <td><%= producto.price %> USD</td>  <!-- Mostrando el precio en USD -->
         </tr>
         <% })%>
       </tbody>

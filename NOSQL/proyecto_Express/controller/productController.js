@@ -3,29 +3,20 @@ import { productModel } from "../model/productModel.js";
 export const obtenerProductos = async (pet, resp) => {
   try {
     let productos = await productModel.find();
-    resp.status(200).json("productos", { productos });
+    resp.status(200).json("Productos", { productos });
   } catch (error) {
     console.log(error);
     resp.status(500).json("error", { error: error.message });
   }
 }
 
-export const crearProducto = async (pet, resp) => {
+export const crearProducto = async (req, res) => {
   try {
-    const producto = pet.body;
-
-    if (!Array.isArray(producto)) {
-      return resp.status(400).json("error", { error: 'El cuerpo de la solicitud debe ser un array de productos' });
-    }
-
-    await productModel.insertMany(producto);
-
-    const todosLosProductos = await productModel.find();
-
-    resp.status(201).json("productos", { productos: todosLosProductos });
+    const producto = new productModel(req.body);
+    await producto.save();
+    res.status(201).json(producto);
   } catch (error) {
-    console.log(error);
-    resp.status(500).json("error", { error: error.message });
+    res.status(400).json({ error: error.message });
   }
 }
 

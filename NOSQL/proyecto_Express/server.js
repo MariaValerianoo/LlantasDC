@@ -5,6 +5,7 @@ import path from "path"
 import { __dirname } from "./util/__dirname.js"
 import { connectDatabase } from "./config/database.js"
 import userRoutes from "./routes/userRoutes.js"
+import productRoutes from "./routes/productRoutes.js"
 config()
 
 // Conexión Base de Datos
@@ -30,6 +31,8 @@ server.use(json())
 
 // Configuración Rutas
 server.use(userRoutes)
+
+server.use(productRoutes)
 
 
 server.listen(PORT, () => console.log(`Server runinn in port ${PORT}`))
