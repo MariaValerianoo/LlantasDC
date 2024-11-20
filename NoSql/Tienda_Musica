@@ -1,0 +1,56 @@
+Script Mongo Shell
+//Inserciones albumes y artistas
+
+db.artistas.insertMany([
+    { nombre: "The Beatles", genero: "Rock", pais: "Reino Unido" },
+    { nombre: "Taylor Swift", genero: "Pop", pais: "Estados Unidos" },
+    { nombre: "Shakira", genero: "Latino", pais: "Colombia" }
+]);
+
+db.artistas.insertMany([
+    { album: "Abbey Road", artistas: "The Beatles", anio: "1969" },
+    { album: "1989",artistas: "Taylor Swift", anio: "2014" },
+    { album: "El Dorado", artistas: "Shakira", anio: "2017" }
+]);
+
+//Consultas
+db.artistas.find()
+db.albumes.find({ artistas: "Taylor Swift" }).pretty();
+db.artistas.find({ genero: "Rock" }).pretty();
+db.albumes.find({ anio: { $gt: ‘2000’ } }).pretty();
+
+//Actualizacion de documentos
+db.artistas.updateOne(
+    { nombre: "Shakira" },
+    { $set: { pais: "España } }
+);
+
+db.albumes.updateOne(
+    { album: "1989" },
+    { $set: { ventas: 10000000 } }
+);
+
+//Eliminaciones
+
+db.artistas.deleteOne({ nombre: "The Beatles" });
+
+db.albumes.deleteMany({ anio: { $lt: '2000' } });
+
+//Implementacion(consultar artistas de un pais 
+
+db.artistas.find({ pais: "España" }).pretty();
+
+//Agregacion
+db.albumes.aggregate([
+    { $group: { _id: "$artistas", totalAlbumes: { $sum: 1 } } }
+]);
+//Implementa Sentencia que devuelva artista con más albumes
+db.albumes.aggregate([
+    { $group: { _id: "$artistas", totalAlbumes: { $sum: 1 } } },
+    { $sort: { totalAlbumes: -1 } },
+    { $limit: 1 }
+]);  
+
+
+
+
