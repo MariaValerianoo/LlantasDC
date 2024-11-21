@@ -1,0 +1,323 @@
+create database dbtionline;
+use dbtionline;
+
+create table cliente(
+    idcliente int primary key not null,
+    nombrecliente varchar(15) null,
+    apellidocliente varchar(15) null,
+    direccioncliente varchar(15) null,
+    telefono int(10) null,
+    fechanacimiento date
+);
+
+create table usuario (
+    idusuario int primary key,
+    cedulausuario int not null,
+    nombreusuario varchar(50),
+    apellidousuario varchar(50),
+    direccionusuario varchar(100),
+    telefono varchar(15),
+    rolusuario varchar(50)
+);
+
+create table venta(
+    idventas int (15) not null,
+    numorden varchar(15) primary key not null,
+    fechacompra date not null,
+    totalcompra int not null,
+    idusuariofk int not null,
+    idclientefk int not null
+);
+
+create table producto(
+    idproducto int auto_increment primary key not null,
+    codigobarras varchar(15) not null,
+    nombreproducto varchar(15) not null,
+    marca varchar(15) not null,
+    precio float not null
+);
+
+create table prodven(
+    numordenfk varchar(15) not null,
+    idProductofk int not null,
+    cantidad int not null
+);
+
+alter table venta
+add constraint ventasar
+foreign key(idusuariofk)
+references usuario(idusuario);
+
+alter table venta
+add constraint ventaclie
+foreign key(idclientefk)
+references cliente(idcliente);
+
+alter table prodven
+add constraint fkprodventa
+foreign key(numordenfk)
+references venta(numorden);
+
+alter table prodven
+add constraint prodvenk
+foreign key(idProductofk)
+references producto(idProducto);
+
+insert into cliente (nombrecliente, apellidocliente, direccioncliente, telefono, fechanacimiento) 
+values ('juan', 'solano', 'calle 1', 3001234567, '1989-01-13'),
+       ('patricia', 'gonzales', 'calle 2', 3007654321, '1984-10-25'),
+       ('laura', 'martínez', 'calle 3', 3001122334, '1998-07-31'),
+       ('luna', 'fernández', 'calle 4', 3009988776, '2011-09-12');
+
+insert into usuario (idUsuario, cedulausuario, nombreusuario, apellidousuario, direccionusuario, telefono, rolusuario) 
+values ('1',1028481760, 'mafe', 'valeriano', 'calle 8', '3101234567', 'empleado'),
+       ('2',52537135, 'valentina', 'pulido', 'calle 10', '3173613339', 'empleado'),
+       ('3',1023456789, 'Danna', 'solano', 'calle 20', '3123456789', 'administrador'),
+       ('4',1087654321, 'pedro', 'rodríguez', 'calle 25', '3198765432', 'empleado');
+
+insert into producto (idProducto,codigobarras, nombreproducto, marca, precio) 
+values ('','45hg', 'jabón', 'suavitel', 10000),
+       ('','45jh', 'detergente', 'ak', 15000),
+       ('','89kq', 'shampoo', 'head & shoulders', 25000),
+       ('','12rw', 'cepillo', 'oral-b', 5000);
+
+insert into venta (idVentas, numorden, fechacompra, totalcompra, idusuariofk, idclientefk) 
+values ('1','ord001', '2023-03-15', 35000, 1, 1),
+       ('2','ord002', '2023-04-20', 25000, 2, 2),
+       ('3','ord003', '2023-06-05', 45000, 1, 3),
+       ('4','ord004', '2023-07-10', 30000, 3, 4);
+
+insert into prodven (numordenfk, idProductofk, cantidad) 
+values ('ord001', '1', 2),
+       ('ord002', '2', 1),
+       ('ord003', '3', 2),
+       ('ord004', '4', 3);
+       
+select * from producto;
+select * from prodven;
+select *from venta;
+select * from usuario;
+/*ordenar productos por precio de menor a mayor*/
+select * from producto order by precio asc;
+
+/*consultar los clientes que nacen en enero*/
+select * from cliente where idcliente in ('1', '3');
+
+/* consultar los usuarios con el rol de empleado*/
+select * from usuario where nombrecliente like '%mafe%' or nombrecliente like '%ruth%' or nombrecliente like '%maría%';
+
+/*consultar las órdenes generadas entre marzo y junio*/
+select * from venta where fechacompra between '2023-03-01' and '2023-06-30';
+
+/*consultar productos que contengan la letra 'r'*/
+select * from producto where nombreproducto like '%r%';
+
+alter table Producto add cantidadProducto int;
+alter table Venta add CantidadUnitaria int;
+alter table Prodven add Total int;
+alter table Prodven change Total totalfinal int (255);
+
+/*Consulta multitablas*/
+select * from Venta inner join Cliente on Venta.idClienteFK = Cliente.idCliente;
+
+/* select masctoa.*, cliente.nombreCliente from mascota inner join on mascota.idmascota=cliente.idmascotafk*/
+/* select m.*, c.nombreCliente
+from Mascota m
+inner join cliente c on m.idmascota=c.idmascotafk*/
+
+select pr.*, v.numorden
+from Prodven pr
+inner join venta v on pr.numOrdenfk= v.numOrden;
+
+alter table prodven add totalCompra int;
+/*consultar cliente de la maxima venta hecha */
+/*consultar usuario y cliente de un venta especifica*/
+/*consultar los productos que comrpo un cliente especifico*/
+/*consultar todos los clientes que han hecho ventas o compras*/
+select c.nombrecliente, v.idClienteFK, pr.totalfinal
+from Venta v
+inner join cliente c on c.idCliente = v.idClienteFK
+inner join prodven pr on v.numOrden=pr.numOrdenFK
+where totalfinal= max(totalfinal);
+
+/*Consultar el cliente de la maxima venta hecha*/
+select venta.idclientefk,cliente.nombrecliente,cliente.idcliente,prodven.total
+ from venta
+ inner join cliente on venta.idclientefk=cliente.idcliente
+ inner join prodven on venta.numOrder=prodven.numordenfk
+ where total=max(total);
+ 
+/*consultar usuario y cliente de una venta*/
+select v.numorden, u.nombreusuario, u.apellidousuario, c.nombrecliente, c.apellidocliente
+from venta v
+inner join usuario u on v.idusuariofk = u.idusuario
+inner join cliente c on v.idclientefk = c.idcliente
+where v.numorden = 'ord001'; 
+
+
+/*consultar los productos que compro un cliente especifico*/
+select c.nombrecliente, c.apellidocliente, p.nombreproducto, p.marca, p.precio
+from venta v
+inner join cliente c on v.idclientefk = c.idcliente
+inner join prodven pv on v.numorden = pv.numordenfk
+inner join producto p on pv.codigobarrasfk = p.codigobarras
+where c.idcliente = 1; 
+
+/*consultar todos los clientes que han hecho una orden*/
+select nombrecliente from cliente
+inner join venta on cliente.idcliente = venta.idclientefk;
+ 
+use dbtionline;
+/*Modificaciones 
+update tabla set campo='nombrecampo' where condicion */
+
+insert into Cliente (nombrecliente, apellidocliente, direccioncliente, telefono) values ('Tatiana', 'Cabrera', 'Calle 13',3107626845);
+
+select * from Venta;
+
+insert into Producto (codigobarras, nombreProducto, marca, precio) values ('13kg','Pijama bebe', 'offcors',20000);
+
+insert into Venta (numorden, fechacompra, totalcompra, idusuariofk, idclientefk) values ('ord005','2024-09-27',20000,3,5);
+
+update Cliente set fechanacimiento='1985-11-24', telefono='314460691', direccionCliente='Calle 104' where idCliente= 5;
+
+alter table Venta change column idventas idventas varchar(255);
+
+update Venta set idVentas='2024-09-27' where idClienteFK= 5;
+
+/*vista que consulte que cliente compro un producto y cual fue su numero de orden*/
+create view vista_cliente_producto as
+select c.nombrecliente, c.apellidocliente, p.nombreproducto, v.numorden
+from cliente c
+join venta v on c.idcliente = v.idclientefk
+join prodven pv on v.numorden = pv.numordenfk
+join producto p on pv.codigobarrasfk = p.codigobarras;
+select * from vista_cliente_producto;
+
+/*vista que muestre el cliente que mas compras alla hecho*/
+create view cliente_mas_compras as
+select c.idcliente, c.nombrecliente, c.apellidocliente, count(v.numorden) as total_compras
+from cliente c
+join venta v on c.idcliente = v.idclientefk
+group by c.idcliente, c.nombrecliente, c.apellidocliente
+order by total_compras desc
+limit 1;
+select * from cliente_mas_compras;
+
+/*Eliminaciones
+delete from tabla where condicion*/
+select * from Cliente;
+select * from Usuario;
+insert into Cliente (idCliente,nombrecliente, apellidocliente, direccioncliente, telefono,fechanacimiento) values (551,'Tatiana','Cabrera','Calle 104',314460691,'1985-11-24');
+update Venta set idClienteFK= 551 where idClienteFK= 5;
+select * from Venta;
+delete from Cliente where idCliente= 5;
+
+use dbtionline;
+/*Procedimiento almacenados -> Subrutinas almacenar la informacion en la base de datos
+Se crea para realizar una tarea especifica
+DELIMITER//
+CREATE PROCEDURE nombre_procedimiento(parametros)
+BEGIN
+--LOGICA SENTENCIA QUE SE QUIERA UTILIZAR
+END//
+
+DELIMITER;
+*/
+describe Producto;
+
+DELIMITER //
+CREATE PROCEDURE registarProducto(idProducto int,codigoBarras varchar(15),nombreProducto varchar(15),marca varchar(15),precio float)
+BEGIN 
+insert into Producto  values (idProducto, codigoBarras, nombreProducto, marca, precio);
+END //
+DELIMITER ;
+
+DROP PROCEDURE registarProducto;
+
+call registarProducto(7,'23jk','Marcadores','Magistral',2000);
+select * from Producto;
+/*ELIMINAR: drop procedure registrarProducto*/
+/*ELIMAR Y VOLVER A CREAR*/
+
+update Producto set nombreProducto='Marcador' WHERE codigoBarras=6;
+
+create view consultarCliente as 
+select * from Cliente;
+
+select * from consultarCliente;
+
+
+/*Procedimiento para inactivar un cliente, consultar los productos que ha comprado un cliente, modificar la fecha de nacimiento de cliente
+Vista que consulte que cliente comrpo un producto y cual fue su numero de orden, y una vista que muestre el cliente que mas compras haya hecho*/
+
+/*procedimiento para inactivar cliente*/
+alter table cliente add estado varchar(10) default 'activo';
+
+delimiter //
+create procedure inactivar_cliente(in id_cliente int)
+begin
+    update cliente
+    set estado = 'inactivo'
+    where idcliente = id_cliente;
+end //
+delimiter ;
+call inactivar_cliente(1); 
+
+
+/*consultar productos que ah comprado un cliente*/
+delimiter //
+create procedure consultar_productos_comprados(in id_cliente int)
+begin
+    select c.nombrecliente, c.apellidocliente, p.nombreproducto, p.marca, p.precio
+    from venta v
+    inner join cliente c on v.idclientefk = c.idcliente
+    inner join prodven pv on v.numorden = pv.numordenfk
+    inner join producto p on pv.codigobarrasfk = p.codigobarras
+    where c.idcliente = id_cliente;
+end //
+delimiter ;
+call consultar_productos_comprados(1);
+
+/*modificar fecha de nacimiento cliente*/
+delimiter //
+create procedure modificar_fecha_nacimiento(in id_cliente int, in nueva_fecha date)
+begin
+    update cliente
+    set fechanacimiento = nueva_fecha
+    where idcliente = id_cliente;
+end //
+delimiter ;
+call modificar_fecha_nacimiento(1, '1992-04-25');
+
+/*Sub consultas: Son consultas dentro de otra consulta
+SELECT campo2, campo3 from tabla
+where columna2=(select columna2x from otra tabla where condicion;
+*/
+
+/*Consultar los datos de los empleados y su sueldo promedio*/
+select idEmpleado, nombreEmpleado, salario, (select avg(salario) 
+from empleado) as proemdio 
+from empleado;
+
+/*Consultar el empleado que tenga un mayor salario que el promedio*/
+select idEmpleado, nombreEmpleado, salario
+from empleado where salario> (select avg(salario) 
+from empleado);
+
+/*Consultar a que área pertenece un empleado*/
+select idEmpleado, nombreEmpleado, idArea, nombreArea
+from empleado
+where idArea in (select idArea from area where nombreEmpleado='Juan');
+
+/*Calcular los productos que se vendan a un precio mayor del promedio de todos los productos*/
+Select idProducto, nombreProducto, precio 
+from producto where precio> (select avg(Precio)
+from Producto);
+
+/*Mostrar los clientes que el total de compra sea mayor al promedio de compras de la tienda*/
+Select idCliente, nombreCliente, numOrden, totalcompra
+from Cliente
+where numOrden in (select numOrden from venta where totalCompra > (select avg(totalCompra) from Venta);
+
+/*Mostrar el promedio de precios de productos comprados por un cliente */
