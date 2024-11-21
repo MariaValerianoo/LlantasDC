@@ -1,0 +1,1 @@
+import { ventaModel } from "../model/ventaModel.js";

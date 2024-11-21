@@ -1,0 +1,1 @@
+import { contenedorModel } from "../model/contenedorModel.js";
