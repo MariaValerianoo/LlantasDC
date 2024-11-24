@@ -1,7 +1,7 @@
 //Modelo para definir la manipulacion deo midulo de usuarios
 const mongoose=require('mongoose');
 
-const userSchema=new mongoose.Schema({
+const usuarioSchema=new mongoose.Schema({
    idUsuario:{
        type: Number,
        require: true
@@ -25,5 +25,5 @@ const userSchema=new mongoose.Schema({
 
 });
 
-module.exports=mongoose.model('user',userSchema);
+module.exports=mongoose.model('user',usuarioSchema);
 

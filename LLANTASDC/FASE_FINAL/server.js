@@ -3,8 +3,11 @@ import express, {json} from "express"
 import path from "path"
 
 import { connectDatabase } from "./config/database.js"
-import artistaRoutes from "./routes/artistaRoute.js"
-import albumRoutes from "./routes/albumRoute.js"
+import clienteRoute from "./routes/clienteRoute.js"
+import contenedorRoute from "./routes/contenedorRoute.js"
+import productoRoute from "./routes/productoRoute.js"
+import usuarioRoute from "./routes/usuarioRoute.js"
+import ventaRoute from "./routes/ventaRoute.js"
 config()
 
 // Conexión Base de Datos
@@ -29,8 +32,11 @@ server.use(express.static('public'));
 server.use(json())
 
 // Configuración Rutas
-server.use(artistaRoutes)
-server.use(albumRoutes)
+server.use(clienteRoute)
+server.use(contenedorRoute)
+server.use(productoRoute)
+server.use(usuarioRoute)
+server.use(ventaRoute)
 
 
 server.listen(PORT, () => console.log(`Server runinn in port ${PORT}`))

@@ -1,9 +1,22 @@
 import { Router } from "express";
-import {  } from "../controller/productoController.js";
+import { obtenerProducto,crearProducto,obtenerDimensionesPrecio,obtenerProductosPorCantidad,
+    buscarProductoDimension,buscarProductoMarca,buscarProductoDiseño,buscarProductosPrecio,
+    precioReferencia,cantidadReferencia,dimensionReferencia,diseñoReferencia,marcaReferencia,
+ } from "../controller/productoController.js";
 const router = Router()
 
-router.get('/', obtenerDatos)
-router.post('/', crearDatos)
-
+router.get('/producto', obtenerProducto)
+router.post('/producto', crearProducto)
+router.get('/productoDim',obtenerDimensionesPrecio)
+router.get('/productoCant',obtenerProductosPorCantidad)
+router.get('/productoDimen',buscarProductoDimension)
+router.get('/productoMar',buscarProductoMarca)
+router.get('/productoDis',buscarProductoDiseño)
+router.get('/productoPre',buscarProductosPrecio)
+router.put('/producto',precioReferencia)
+router.put('/productoCant',cantidadReferencia)
+router.put('/productoDim',dimensionReferencia)
+router.put('/productoDis',diseñoReferencia)
+router.put('/productoMar',marcaReferencia)
 
 export default router;

@@ -1,6 +1,8 @@
 const mongoose=require('mongoose');
+import {productoModel} from "./productoModel.js"
+import { contenedorModel } from "./contenedorModel.js";
 
-const productoSchema=new mongoose.Schema({
+const ventaSchema=new mongoose.Schema({
     numorden:{
        type: Number,
        require: true
@@ -15,9 +17,12 @@ const productoSchema=new mongoose.Schema({
    },
    metodoPago:{
     type: String
+    },
+    cantidad:{
+        typer:Number
     }
 
 });
 
-module.exports=mongoose.model('producto',productoSchema);
+module.exports=mongoose.model('producto',ventaSchema);
 
