@@ -1,8 +1,8 @@
-const mongoose=require('mongoose');
+import mongoose, { Schema } from "mongoose";
 
 const contenedorSchema=new mongoose.Schema({
     idContenedor:{
-       type: int,
+       type: Number,
        require: true
    },
    FacturaContenedor:{
@@ -18,10 +18,9 @@ const contenedorSchema=new mongoose.Schema({
     require: true
     },
     fechaLlegada:{
-        type: date,
+        type: Date,
         require: true
     }
 
 });
-
-module.exports=mongoose.model('contenedor',contenedorSchema);
+export const contenedorModel = new mongoose.model('Contenedor', contenedorSchema)

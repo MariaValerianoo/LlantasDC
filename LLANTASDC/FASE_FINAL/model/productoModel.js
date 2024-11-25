@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+import mongoose, { Schema } from "mongoose";
 
 const productoSchema=new mongoose.Schema({
     referenciaProducto:{
@@ -16,14 +16,13 @@ const productoSchema=new mongoose.Schema({
    marca:{
     type: String
     },precio:{
-        type: float,
+        type: Number,
         require: true
     },cantidad:{
-        type: int,
+        type: Number,
         require: true
     }
 
 });
-
-module.exports=mongoose.model('producto',productoSchema);
+export const productoModel = new mongoose.model('Producto', productoSchema)
 

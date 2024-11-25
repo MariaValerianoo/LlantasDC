@@ -1,4 +1,4 @@
-const mongoose=require('mongoose');
+import mongoose, { Schema } from "mongoose";
 import {productoModel} from "./productoModel.js"
 import { contenedorModel } from "./contenedorModel.js";
 
@@ -23,6 +23,5 @@ const ventaSchema=new mongoose.Schema({
     }
 
 });
-
-module.exports=mongoose.model('producto',ventaSchema);
+export const ventaModel = new mongoose.model('Venta', ventaSchema)
 
