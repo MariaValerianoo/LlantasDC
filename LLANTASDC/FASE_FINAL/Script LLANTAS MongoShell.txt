@@ -1,0 +1,3251 @@
+use LLANTAS_DC
+switched to db LLANTAS_DC
+db.createCollection("Usuario");
+db.createCollection("Cliente");
+db.createCollection("Producto");
+db.createCollection("Contenedor");
+db.createCollection("Venta");
+
+{ ok: 1 }
+db.Usuario.insertMany([
+    {
+        idUsuario: 36306093,
+        nombreUsuario: "Jaqueline",
+        apellidoUsuario: "Bocanegra",
+        telefonoUsuario: 3107626827,
+        correoUsuario: "jaquelinebb65@gmail.com"
+    },
+    {
+        idUsuario: 7720166,
+        nombreUsuario: "Breyner",
+        apellidoUsuario: "Solano",
+        telefonoUsuario: 3013077791,
+        correoUsuario: "superbrey@gmail.com"
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6735261e69fcfe1c0393fa31'),
+    '1': ObjectId('6735261e69fcfe1c0393fa32')
+  }
+}
+db.Cliente.insertMany([
+    {
+        RutCliente: "900769308-9",
+        NombreTercero: "A&E CONTAINER S.A.S",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "CL 10 N 14 A 85 SUR TO 9 AP 733",
+        ciudadCliente: "Mosquera",
+        TelefonoCliente: 6018938608,
+        nombreContacto: "A&E CONTAINER S.A.S"
+    },
+    {
+        RutCliente: "817001773-3",
+        NombreTercero: "A.I.C.",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "Cra. 36c #5B2-32",
+        ciudadCliente: "Cali",
+        TelefonoCliente: 03100000000,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "830078512-6",
+        NombreTercero: "ACH Colombia S.A.",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "Tv. 23 # 97-73",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 6017444686,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "830027461-0",
+        NombreTercero: "ADDEC S.A.S",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "CR 2 4 88",
+        ciudadCliente: "Mosquera",
+        TelefonoCliente: 6018295603,
+        nombreContacto: "ADDEC SAS"
+    },
+    {
+        RutCliente: "800138188-1",
+        NombreTercero: "Administradora de Fondos de Pensiones y Cesantía Protección S.A.",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "Calle 49 No. 63 - 100",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 03100000000,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "3242138-7",
+        NombreTercero: "ADOLFO MORA GIL",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "CL 6 3 20",
+        ciudadCliente: "Madrid",
+        TelefonoCliente: 3108119206,
+        nombreContacto: "ADOLFO MORA GIL"
+    },
+    {
+        RutCliente: "1090375435-8",
+        NombreTercero: "ADRIANA JIMENEZ PEREZ",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "K D X 30 VDA PORVENIR",
+        ciudadCliente: "El Zulia",
+        TelefonoCliente: 3202599901,
+        nombreContacto: "ADRIANA JIMENEZ PEREZ"
+    },
+    {
+        RutCliente: "901255510-8",
+        NombreTercero: "AGENCIA DE ADUANAS MAG CUSTOMS SAS",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "CR 28B 78 77 OFC 401",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 6016298190,
+        nombreContacto: "AGENCIA DE ADUANAS MAG CUSTOMS SAS"
+    },
+    {
+        RutCliente: "900453866-1",
+        NombreTercero: "AGRETRANS JAS SAS",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "CRA 123 13 21 IN  6 1",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 6019192757,
+        nombreContacto: "AGRETRANS JAS SAS"
+    },
+    {
+        RutCliente: "901408098-2",
+        NombreTercero: "AGUA POTABLE VELASQUEZ SAS",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "TV 39 A 38 A 64 SUR",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3108501140,
+        nombreContacto: "AGUA POTABLE VELASQUEZ SAS"
+    },
+    {
+        RutCliente: "900298456-9",
+        NombreTercero: "AIRGAS DE COLOMBIA SAS",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "TV 72D BIS 42C 62 SUR",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 6014929836,
+        nombreContacto: "AIRGAS DE COLOMBIA SAS"
+    },
+    {
+        RutCliente: "79791143-5",
+        NombreTercero: "ALEJANDRO ALARCON DIAZ",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "CL 75 70 F 38 LC 5",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3213153531,
+        nombreContacto: "ALEJANDRO ALARCON DIAZ"
+    },
+    {
+        RutCliente: "1056908524-0",
+        NombreTercero: "ALEX ANTONIO BARRERA CASTRO",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "DG 49 A 53 A 48",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3168262346,
+        nombreContacto: "ALEX ANTONIO BARRERA CASTRO"
+    },
+    {
+        RutCliente: "7063136-9",
+        NombreTercero: "ALEXIS ALFONSO RINCON",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "CL 5 A SUR 13 57",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3208004142,
+        nombreContacto: "ALEXIS ALFONSO RINCON"
+    },
+    {
+        RutCliente: "860503617-3",
+        NombreTercero: "ALFA",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "Av. calle 24A #59",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 03100000000,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "19443263-0",
+        NombreTercero: "ALFONSO EDUARDO N NIETO MORA",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "CR 15   4   44 SUR BRR SAN ANTONIO",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3112232207,
+        nombreContacto: "ALFONSO EDUARDO N NIETO MORA"
+    },
+    {
+        RutCliente: "830113831-0",
+        NombreTercero: "Aliansalud",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "Cr 8 38 - 31",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 03100000000,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "901240125-1",
+        NombreTercero: "ALIANZA TRANSPORTADORA PREMIUM SAS",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "CR 96 I 15 C 70",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3125623371,
+        nombreContacto: ""
+    },
+    {
+        RutCliente: "901818342-4",
+        NombreTercero: "ALMACEN Y TALLER CHITARAQUE S.A.S",
+        TipoIdentificacion: "NIT",
+        dirreccionCliente: "KILOMETRO 0.2 VIA SIBERIA FUNZA",
+        ciudadCliente: "Tenjo",
+        TelefonoCliente: 3105783667,
+        nombreContacto: "ALMACEN Y TALLER CHITARAQUE S.A.S"
+    },
+    {
+        RutCliente: "79128266-0",
+        NombreTercero: "ALONSO RODRIGUEZ GUERRERO",
+        TipoIdentificacion: "Cédula",
+        dirreccionCliente: "CRA 104 15A 38 BL 6 CA 21",
+        ciudadCliente: "Bogotá",
+        TelefonoCliente: 3214920357,
+        nombreContacto: "ALONSO RODRIGUEZ GUERRERO"
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('673544bf69fcfe1c0393fa33'),
+    '1': ObjectId('673544bf69fcfe1c0393fa34'),
+    '2': ObjectId('673544bf69fcfe1c0393fa35'),
+    '3': ObjectId('673544bf69fcfe1c0393fa36'),
+    '4': ObjectId('673544bf69fcfe1c0393fa37'),
+    '5': ObjectId('673544bf69fcfe1c0393fa38'),
+    '6': ObjectId('673544bf69fcfe1c0393fa39'),
+    '7': ObjectId('673544bf69fcfe1c0393fa3a'),
+    '8': ObjectId('673544bf69fcfe1c0393fa3b'),
+    '9': ObjectId('673544bf69fcfe1c0393fa3c'),
+    '10': ObjectId('673544bf69fcfe1c0393fa3d'),
+    '11': ObjectId('673544bf69fcfe1c0393fa3e'),
+    '12': ObjectId('673544bf69fcfe1c0393fa3f'),
+    '13': ObjectId('673544bf69fcfe1c0393fa40'),
+    '14': ObjectId('673544bf69fcfe1c0393fa41'),
+    '15': ObjectId('673544bf69fcfe1c0393fa42'),
+    '16': ObjectId('673544bf69fcfe1c0393fa43'),
+    '17': ObjectId('673544bf69fcfe1c0393fa44'),
+    '18': ObjectId('673544bf69fcfe1c0393fa45'),
+    '19': ObjectId('673544bf69fcfe1c0393fa46')
+  }
+}
+db.Producto.insertMany([
+    {
+        referenciaProducto: "ecoplus C2",
+        dimensionProducto: "21575/R17.5",
+        diseñoProducto: "direccional",
+        marca: "XBRI",
+        precio: 1140000.0,
+        cantidad: 100
+    },
+    {
+        referenciaProducto: "xforza P1",
+        dimensionProducto: "235/75R17.5",
+        diseñoProducto: "tracción",
+        marca: "XBRI",
+        precio: 1146000.0,
+        cantidad: 124
+    },
+    {
+        referenciaProducto: "ecoway P1",
+        dimensionProducto: "235/75R17.5",
+        diseñoProducto: "direccional",
+        marca: "XBRI",
+        precio: 600000.0,
+        cantidad: 80
+    },
+    {
+        referenciaProducto: "xforza Z1",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "traccion",
+        marca: "XBRI",
+        precio: 1145000.0,
+        cantidad: 124
+    },
+    {
+        referenciaProducto: "mix wokrs Z2",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "traccion",
+        marca: "XBRI",
+        precio: 1133000.0,
+        cantidad: 44
+    },
+    {
+        referenciaProducto: "forza plus",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "traccion",
+        marca: "XBRI",
+        precio: 1120000.0,
+        cantidad: 244
+    },
+    {
+        referenciaProducto: "xforza",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "traccion",
+        marca: "XBRI",
+        precio: 1000000.0,
+        cantidad: 91
+    },
+    {
+        referenciaProducto: "ws806",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "traccion",
+        marca: "XBRI",
+        precio: 1250000.0,
+        cantidad: 40
+    },
+    {
+        referenciaProducto: "ecoplus P2",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "direccional",
+        marca: "XBRI",
+        precio: 925000.0,
+        cantidad: 254
+    },
+    {
+        referenciaProducto: "xcurve Z1",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "direccional",
+        marca: "XBRI",
+        precio: 986000.0,
+        cantidad: 60
+    },
+    {
+        referenciaProducto: "mix wokrs Z1",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "mixto",
+        marca: "XBRI",
+        precio: 989000.0,
+        cantidad: 40
+    },
+    {
+        referenciaProducto: "zigzag Z6",
+        dimensionProducto: "29580R22.5",
+        diseñoProducto: "direccional",
+        marca: "XBRI",
+        precio: 1100000.0,
+        cantidad: 40
+    },
+    {
+        referenciaProducto: "forza block P1",
+        dimensionProducto: "12R22.5",
+        diseñoProducto: "tracción severa",
+        marca: "XBRI",
+        precio: 1100000.0,
+        cantidad: 50
+    },
+    {
+        referenciaProducto: "forza block P2",
+        dimensionProducto: "12R22.5",
+        diseñoProducto: "tracción mixta",
+        marca: "XBRI",
+        precio: 1300000.0,
+        cantidad: 20
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('673544f969fcfe1c0393fa47'),
+    '1': ObjectId('673544f969fcfe1c0393fa48'),
+    '2': ObjectId('673544f969fcfe1c0393fa49'),
+    '3': ObjectId('673544f969fcfe1c0393fa4a'),
+    '4': ObjectId('673544f969fcfe1c0393fa4b'),
+    '5': ObjectId('673544f969fcfe1c0393fa4c'),
+    '6': ObjectId('673544f969fcfe1c0393fa4d'),
+    '7': ObjectId('673544f969fcfe1c0393fa4e'),
+    '8': ObjectId('673544f969fcfe1c0393fa4f'),
+    '9': ObjectId('673544f969fcfe1c0393fa50'),
+    '10': ObjectId('673544f969fcfe1c0393fa51'),
+    '11': ObjectId('673544f969fcfe1c0393fa52'),
+    '12': ObjectId('673544f969fcfe1c0393fa53'),
+    '13': ObjectId('673544f969fcfe1c0393fa54')
+  }
+}
+db.Contenedor.insertMany([
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-230713-017CN",
+        naviera: "Maerks",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2023-07-03")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-230814-024CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2023-08-14")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO 230912-002CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2023-12-06")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO 230912-001CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2023-12-20")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO 230912-002CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2023-12-28")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO 231011-011CN",
+        naviera: "Yang ming",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-01-01")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-23116-012CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-02-14")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-231116-011CN",
+        naviera: "WAN HAI",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-03-14")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240115-007CN",
+        naviera: "CARGO LOGISTIC",
+        agenteAduanera: "Cargo logistoc",
+        fechaLlegada: new Date("2024-04-06")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240215-007CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-04-24")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240320-004CN",
+        naviera: "ROLCO SHIPPING",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-06-29")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240517 007CN",
+        naviera: "WAN HAI",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-07-09")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240405 001CN",
+        naviera: "WAN HAI",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-07-09")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "CO-240510-007CN",
+        naviera: "MAERKS",
+        agenteAduanera: "CARGO LOGISTIC",
+        fechaLlegada: new Date("2024-08-04")
+    },
+    {
+        idContenedor: ObjectId(),
+        FacturaContenedor: "C0-2345",
+        naviera: "maerks",
+        agenteAduanera: "cargo logistic",
+        fechaLlegada: new Date("2024-08-04")
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6735459269fcfe1c0393fa64'),
+    '1': ObjectId('6735459269fcfe1c0393fa65'),
+    '2': ObjectId('6735459269fcfe1c0393fa66'),
+    '3': ObjectId('6735459269fcfe1c0393fa67'),
+    '4': ObjectId('6735459269fcfe1c0393fa68'),
+    '5': ObjectId('6735459269fcfe1c0393fa69'),
+    '6': ObjectId('6735459269fcfe1c0393fa6a'),
+    '7': ObjectId('6735459269fcfe1c0393fa6b'),
+    '8': ObjectId('6735459269fcfe1c0393fa6c'),
+    '9': ObjectId('6735459269fcfe1c0393fa6d'),
+    '10': ObjectId('6735459269fcfe1c0393fa6e'),
+    '11': ObjectId('6735459269fcfe1c0393fa6f'),
+    '12': ObjectId('6735459269fcfe1c0393fa70'),
+    '13': ObjectId('6735459269fcfe1c0393fa71'),
+    '14': ObjectId('6735459269fcfe1c0393fa72')
+  }
+}
+db.Venta.insertMany([
+    {
+        numOrden: 1,
+        fechacompra: new Date("2024-01-01"),
+        totalcompra: 5000000,
+        idusuariofk: 36306093,
+        rutclientefk: "900769308-9",
+        metodoPago: "Tarjeta de crédito",
+        idContenedorFK: 1
+    },
+    {
+        numOrden: 2,
+        fechacompra: new Date("2024-01-02"),
+        totalcompra: 2500000,
+        idusuariofk: 36306093,
+        rutclientefk: "817001773-3",
+        metodoPago: "Efectivo",
+        idContenedorFK: 2
+    },
+    {
+        numOrden: 3,
+        fechacompra: new Date("2024-01-03"),
+        totalcompra: 1500000,
+        idusuariofk: 7720166,
+        rutclientefk: "830078512-6",
+        metodoPago: "Tarjeta de débito",
+        idContenedorFK: 3
+    },
+    {
+        numOrden: 4,
+        fechacompra: new Date("2024-01-04"),
+        totalcompra: 3000000,
+        idusuariofk: 7720166,
+        rutclientefk: "830027461-0",
+        metodoPago: "Transferencia",
+        idContenedorFK: 4
+    },
+    {
+        numOrden: 5,
+        fechacompra: new Date("2024-01-05"),
+        totalcompra: 4500000,
+        idusuariofk: 36306093,
+        rutclientefk: "800138188-1",
+        metodoPago: "Tarjeta de crédito",
+        idContenedorFK: 5
+    },
+    {
+        numOrden: 6,
+        fechacompra: new Date("2024-01-06"),
+        totalcompra: 6000000,
+        idusuariofk: 7720166,
+        rutclientefk: "3242138-7",
+        metodoPago: "Efectivo",
+        idContenedorFK: 6
+    },
+    {
+        numOrden: 7,
+        fechacompra: new Date("2024-01-07"),
+        totalcompra: 2000000,
+        idusuariofk: 36306093,
+        rutclientefk: "1090375435-8",
+        metodoPago: "Transferencia",
+        idContenedorFK: 7
+    },
+    {
+        numOrden: 8,
+        fechacompra: new Date("2024-01-08"),
+        totalcompra: 5500000,
+        idusuariofk: 7720166,
+        rutclientefk: "900453866-1",
+        metodoPago: "Tarjeta de débito",
+        idContenedorFK: 8
+    },
+    {
+        numOrden: 9,
+        fechacompra: new Date("2024-01-09"),
+        totalcompra: 3500000,
+        idusuariofk: 36306093,
+        rutclientefk: "901408098-2",
+        metodoPago: "Tarjeta de crédito",
+        idContenedorFK: 9
+    },
+    {
+        numOrden: 10,
+        fechacompra: new Date("2024-01-10"),
+        totalcompra: 1200000,
+        idusuariofk: 7720166,
+        rutclientefk: "900298456-9",
+        metodoPago: "Efectivo",
+        idContenedorFK: 10
+    },
+    {
+        numOrden: 11,
+        fechacompra: new Date("2024-01-11"),
+        totalcompra: 1700000,
+        idusuariofk: 36306093,
+        rutclientefk: "79791143-5",
+        metodoPago: "Transferencia",
+        idContenedorFK: 11
+    },
+    {
+        numOrden: 12,
+        fechacompra: new Date("2024-01-12"),
+        totalcompra: 2100000,
+        idusuariofk: 7720166,
+        rutclientefk: "1056908524-0",
+        metodoPago: "Tarjeta de débito",
+        idContenedorFK: 12
+    },
+    {
+        numOrden: 13,
+        fechacompra: new Date("2024-01-13"),
+        totalcompra: 4500000,
+        idusuariofk: 36306093,
+        rutclientefk: "7063136-9",
+        metodoPago: "Efectivo",
+        idContenedorFK: 13
+    },
+    {
+        numOrden: 14,
+        fechacompra: new Date("2024-01-14"),
+        totalcompra: 5000000,
+        idusuariofk: 7720166,
+        rutclientefk: "860503617-3",
+        metodoPago: "Tarjeta de crédito",
+        idContenedorFK: 14
+    },
+    {
+        numOrden: 15,
+        fechacompra: new Date("2024-01-15"),
+        totalcompra: 7000000,
+        idusuariofk: 36306093,
+        rutclientefk: "19443263-0",
+        metodoPago: "Transferencia",
+        idContenedorFK: 13
+    },
+    {
+        numOrden: 16,
+        fechacompra: new Date("2024-01-16"),
+        totalcompra: 3000000,
+        idusuariofk: 7720166,
+        rutclientefk: "830113831-0",
+        metodoPago: "Tarjeta de débito",
+        idContenedorFK: 4
+    },
+    {
+        numOrden: 17,
+        fechacompra: new Date("2024-01-17"),
+        totalcompra: 1000000,
+        idusuariofk: 36306093,
+        rutclientefk: "901240125-1",
+        metodoPago: "Efectivo",
+        idContenedorFK: 3
+    },
+    {
+        numOrden: 18,
+        fechacompra: new Date("2024-01-18"),
+        totalcompra: 2500000,
+        idusuariofk: 7720166,
+        rutclientefk: "901818342-4",
+        metodoPago: "Tarjeta de crédito",
+        idContenedorFK: 8
+    },
+    {
+        numOrden: 19,
+        fechacompra: new Date("2024-01-19"),
+        totalcompra: 1100000,
+        idusuariofk: 36306093,
+        rutclientefk: "79128266-0",
+        metodoPago: "Transferencia",
+        idContenedorFK: 5
+    },
+    {
+        numOrden: 20,
+        fechacompra: new Date("2024-01-20"),
+        totalcompra: 4000000,
+        idusuariofk: 7720166,
+        rutclientefk: "19213923-7",
+        metodoPago: "Tarjeta de débito",
+        idContenedorFK: 1
+    }
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6735461269fcfe1c0393fa73'),
+    '1': ObjectId('6735461269fcfe1c0393fa74'),
+    '2': ObjectId('6735461269fcfe1c0393fa75'),
+    '3': ObjectId('6735461269fcfe1c0393fa76'),
+    '4': ObjectId('6735461269fcfe1c0393fa77'),
+    '5': ObjectId('6735461269fcfe1c0393fa78'),
+    '6': ObjectId('6735461269fcfe1c0393fa79'),
+    '7': ObjectId('6735461269fcfe1c0393fa7a'),
+    '8': ObjectId('6735461269fcfe1c0393fa7b'),
+    '9': ObjectId('6735461269fcfe1c0393fa7c'),
+    '10': ObjectId('6735461269fcfe1c0393fa7d'),
+    '11': ObjectId('6735461269fcfe1c0393fa7e'),
+    '12': ObjectId('6735461269fcfe1c0393fa7f'),
+    '13': ObjectId('6735461269fcfe1c0393fa80'),
+    '14': ObjectId('6735461269fcfe1c0393fa81'),
+    '15': ObjectId('6735461269fcfe1c0393fa82'),
+    '16': ObjectId('6735461269fcfe1c0393fa83'),
+    '17': ObjectId('6735461269fcfe1c0393fa84'),
+    '18': ObjectId('6735461269fcfe1c0393fa85'),
+    '19': ObjectId('6735461269fcfe1c0393fa86')
+  }
+}
+db.getCollectionNames()
+[
+  'DetalleVenta',
+  'Usuario',
+  'Producto',
+  'Venta',
+  'Cliente',
+  'Contenedor'
+]
+db.Usuario.find()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa32'),
+  idUsuario: 7720166,
+  nombreUsuario: 'Breyner',
+  apellidoUsuario: 'Solano',
+  telefonoUsuario: 3013077791,
+  correoUsuario: 'superbrey@gmail.com'
+}
+db.Usuario.find().pretty()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa32'),
+  idUsuario: 7720166,
+  nombreUsuario: 'Breyner',
+  apellidoUsuario: 'Solano',
+  telefonoUsuario: 3013077791,
+  correoUsuario: 'superbrey@gmail.com'
+}
+db.Cliente.find().pretty()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa33'),
+  RutCliente: '900769308-9',
+  NombreTercero: 'A&E CONTAINER S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CL 10 N 14 A 85 SUR TO 9 AP 733',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018938608,
+  nombreContacto: 'A&E CONTAINER S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa34'),
+  RutCliente: '817001773-3',
+  NombreTercero: 'A.I.C.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cra. 36c #5B2-32',
+  ciudadCliente: 'Cali',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa35'),
+  RutCliente: '830078512-6',
+  NombreTercero: 'ACH Colombia S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Tv. 23 # 97-73',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6017444686,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa36'),
+  RutCliente: '830027461-0',
+  NombreTercero: 'ADDEC S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 2 4 88',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018295603,
+  nombreContacto: 'ADDEC SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa37'),
+  RutCliente: '800138188-1',
+  NombreTercero: 'Administradora de Fondos de Pensiones y Cesantía Protección S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Calle 49 No. 63 - 100',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa38'),
+  RutCliente: '3242138-7',
+  NombreTercero: 'ADOLFO MORA GIL',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 6 3 20',
+  ciudadCliente: 'Madrid',
+  TelefonoCliente: 3108119206,
+  nombreContacto: 'ADOLFO MORA GIL'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa39'),
+  RutCliente: '1090375435-8',
+  NombreTercero: 'ADRIANA JIMENEZ PEREZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'K D X 30 VDA PORVENIR',
+  ciudadCliente: 'El Zulia',
+  TelefonoCliente: 3202599901,
+  nombreContacto: 'ADRIANA JIMENEZ PEREZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3a'),
+  RutCliente: '901255510-8',
+  NombreTercero: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 28B 78 77 OFC 401',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6016298190,
+  nombreContacto: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3b'),
+  RutCliente: '900453866-1',
+  NombreTercero: 'AGRETRANS JAS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CRA 123 13 21 IN  6 1',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6019192757,
+  nombreContacto: 'AGRETRANS JAS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3c'),
+  RutCliente: '901408098-2',
+  NombreTercero: 'AGUA POTABLE VELASQUEZ SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 39 A 38 A 64 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3108501140,
+  nombreContacto: 'AGUA POTABLE VELASQUEZ SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3d'),
+  RutCliente: '900298456-9',
+  NombreTercero: 'AIRGAS DE COLOMBIA SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 72D BIS 42C 62 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6014929836,
+  nombreContacto: 'AIRGAS DE COLOMBIA SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3e'),
+  RutCliente: '79791143-5',
+  NombreTercero: 'ALEJANDRO ALARCON DIAZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 75 70 F 38 LC 5',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3213153531,
+  nombreContacto: 'ALEJANDRO ALARCON DIAZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3f'),
+  RutCliente: '1056908524-0',
+  NombreTercero: 'ALEX ANTONIO BARRERA CASTRO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'DG 49 A 53 A 48',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3168262346,
+  nombreContacto: 'ALEX ANTONIO BARRERA CASTRO'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa40'),
+  RutCliente: '7063136-9',
+  NombreTercero: 'ALEXIS ALFONSO RINCON',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 5 A SUR 13 57',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3208004142,
+  nombreContacto: 'ALEXIS ALFONSO RINCON'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa41'),
+  RutCliente: '860503617-3',
+  NombreTercero: 'ALFA',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Av. calle 24A #59',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa42'),
+  RutCliente: '19443263-0',
+  NombreTercero: 'ALFONSO EDUARDO N NIETO MORA',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CR 15   4   44 SUR BRR SAN ANTONIO',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3112232207,
+  nombreContacto: 'ALFONSO EDUARDO N NIETO MORA'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa43'),
+  RutCliente: '830113831-0',
+  NombreTercero: 'Aliansalud',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cr 8 38 - 31',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa44'),
+  RutCliente: '901240125-1',
+  NombreTercero: 'ALIANZA TRANSPORTADORA PREMIUM SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 96 I 15 C 70',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3125623371,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa45'),
+  RutCliente: '901818342-4',
+  NombreTercero: 'ALMACEN Y TALLER CHITARAQUE S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'KILOMETRO 0.2 VIA SIBERIA FUNZA',
+  ciudadCliente: 'Tenjo',
+  TelefonoCliente: 3105783667,
+  nombreContacto: 'ALMACEN Y TALLER CHITARAQUE S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa46'),
+  RutCliente: '79128266-0',
+  NombreTercero: 'ALONSO RODRIGUEZ GUERRERO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CRA 104 15A 38 BL 6 CA 21',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3214920357,
+  nombreContacto: 'ALONSO RODRIGUEZ GUERRERO'
+}
+db.Contenedor.find({}, { FacturaContenedor: 1, _id: 0 })
+{
+  FacturaContenedor: 'CO-230713-017CN'
+}
+{
+  FacturaContenedor: 'CO-230814-024CN'
+}
+{
+  FacturaContenedor: 'CO 230912-002CN'
+}
+{
+  FacturaContenedor: 'CO 230912-001CN'
+}
+{
+  FacturaContenedor: 'CO 230912-002CN'
+}
+{
+  FacturaContenedor: 'CO 231011-011CN'
+}
+{
+  FacturaContenedor: 'CO-23116-012CN'
+}
+{
+  FacturaContenedor: 'CO-231116-011CN'
+}
+{
+  FacturaContenedor: 'CO-240115-007CN'
+}
+{
+  FacturaContenedor: 'CO-240215-007CN'
+}
+{
+  FacturaContenedor: 'CO-240320-004CN'
+}
+{
+  FacturaContenedor: 'CO-240517 007CN'
+}
+{
+  FacturaContenedor: 'CO-240405 001CN'
+}
+{
+  FacturaContenedor: 'CO-240510-007CN'
+}
+{
+  FacturaContenedor: 'C0-2345'
+}
+db.Venta.find().pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa73'),
+  numOrden: 1,
+  fechacompra: 2024-01-01T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 36306093,
+  rutclientefk: '900769308-9',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 1
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa74'),
+  numOrden: 2,
+  fechacompra: 2024-01-02T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 36306093,
+  rutclientefk: '817001773-3',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 2
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa75'),
+  numOrden: 3,
+  fechacompra: 2024-01-03T00:00:00.000Z,
+  totalcompra: 1500000,
+  idusuariofk: 7720166,
+  rutclientefk: '830078512-6',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa76'),
+  numOrden: 4,
+  fechacompra: 2024-01-04T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830027461-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa77'),
+  numOrden: 5,
+  fechacompra: 2024-01-05T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '800138188-1',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa78'),
+  numOrden: 6,
+  fechacompra: 2024-01-06T00:00:00.000Z,
+  totalcompra: 6000000,
+  idusuariofk: 7720166,
+  rutclientefk: '3242138-7',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 6
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa79'),
+  numOrden: 7,
+  fechacompra: 2024-01-07T00:00:00.000Z,
+  totalcompra: 2000000,
+  idusuariofk: 36306093,
+  rutclientefk: '1090375435-8',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 7
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7a'),
+  numOrden: 8,
+  fechacompra: 2024-01-08T00:00:00.000Z,
+  totalcompra: 5500000,
+  idusuariofk: 7720166,
+  rutclientefk: '900453866-1',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7b'),
+  numOrden: 9,
+  fechacompra: 2024-01-09T00:00:00.000Z,
+  totalcompra: 3500000,
+  idusuariofk: 36306093,
+  rutclientefk: '901408098-2',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 9
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7c'),
+  numOrden: 10,
+  fechacompra: 2024-01-10T00:00:00.000Z,
+  totalcompra: 1200000,
+  idusuariofk: 7720166,
+  rutclientefk: '900298456-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 10
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7d'),
+  numOrden: 11,
+  fechacompra: 2024-01-11T00:00:00.000Z,
+  totalcompra: 1700000,
+  idusuariofk: 36306093,
+  rutclientefk: '79791143-5',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 11
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7e'),
+  numOrden: 12,
+  fechacompra: 2024-01-12T00:00:00.000Z,
+  totalcompra: 2100000,
+  idusuariofk: 7720166,
+  rutclientefk: '1056908524-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 12
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7f'),
+  numOrden: 13,
+  fechacompra: 2024-01-13T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '7063136-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa80'),
+  numOrden: 14,
+  fechacompra: 2024-01-14T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 7720166,
+  rutclientefk: '860503617-3',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 14
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa81'),
+  numOrden: 15,
+  fechacompra: 2024-01-15T00:00:00.000Z,
+  totalcompra: 7000000,
+  idusuariofk: 36306093,
+  rutclientefk: '19443263-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa82'),
+  numOrden: 16,
+  fechacompra: 2024-01-16T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830113831-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa83'),
+  numOrden: 17,
+  fechacompra: 2024-01-17T00:00:00.000Z,
+  totalcompra: 1000000,
+  idusuariofk: 36306093,
+  rutclientefk: '901240125-1',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa84'),
+  numOrden: 18,
+  fechacompra: 2024-01-18T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 7720166,
+  rutclientefk: '901818342-4',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa85'),
+  numOrden: 19,
+  fechacompra: 2024-01-19T00:00:00.000Z,
+  totalcompra: 1100000,
+  idusuariofk: 36306093,
+  rutclientefk: '79128266-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa86'),
+  numOrden: 20,
+  fechacompra: 2024-01-20T00:00:00.000Z,
+  totalcompra: 4000000,
+  idusuariofk: 7720166,
+  rutclientefk: '19213923-7',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 1
+}
+db.Producto.find({}, { dimensionProducto: 1, precio: 1, _id: 0 })
+{
+  dimensionProducto: '21575/R17.5',
+  precio: 1140000
+}
+{
+  dimensionProducto: '235/75R17.5',
+  precio: 1146000
+}
+{
+  dimensionProducto: '235/75R17.5',
+  precio: 600000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1145000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1133000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1120000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1000000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1250000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 925000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 986000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 989000
+}
+{
+  dimensionProducto: '29580R22.5',
+  precio: 1100000
+}
+{
+  dimensionProducto: '12R22.5',
+  precio: 1100000
+}
+{
+  dimensionProducto: '12R22.5',
+  precio: 1300000
+}
+db.Cliente.find({ NombreTercero: "Asmet Salud" }).pretty()
+db.Cliente.find().pretty()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa33'),
+  RutCliente: '900769308-9',
+  NombreTercero: 'A&E CONTAINER S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CL 10 N 14 A 85 SUR TO 9 AP 733',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018938608,
+  nombreContacto: 'A&E CONTAINER S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa34'),
+  RutCliente: '817001773-3',
+  NombreTercero: 'A.I.C.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cra. 36c #5B2-32',
+  ciudadCliente: 'Cali',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa35'),
+  RutCliente: '830078512-6',
+  NombreTercero: 'ACH Colombia S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Tv. 23 # 97-73',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6017444686,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa36'),
+  RutCliente: '830027461-0',
+  NombreTercero: 'ADDEC S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 2 4 88',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018295603,
+  nombreContacto: 'ADDEC SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa37'),
+  RutCliente: '800138188-1',
+  NombreTercero: 'Administradora de Fondos de Pensiones y Cesantía Protección S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Calle 49 No. 63 - 100',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa38'),
+  RutCliente: '3242138-7',
+  NombreTercero: 'ADOLFO MORA GIL',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 6 3 20',
+  ciudadCliente: 'Madrid',
+  TelefonoCliente: 3108119206,
+  nombreContacto: 'ADOLFO MORA GIL'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa39'),
+  RutCliente: '1090375435-8',
+  NombreTercero: 'ADRIANA JIMENEZ PEREZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'K D X 30 VDA PORVENIR',
+  ciudadCliente: 'El Zulia',
+  TelefonoCliente: 3202599901,
+  nombreContacto: 'ADRIANA JIMENEZ PEREZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3a'),
+  RutCliente: '901255510-8',
+  NombreTercero: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 28B 78 77 OFC 401',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6016298190,
+  nombreContacto: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3b'),
+  RutCliente: '900453866-1',
+  NombreTercero: 'AGRETRANS JAS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CRA 123 13 21 IN  6 1',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6019192757,
+  nombreContacto: 'AGRETRANS JAS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3c'),
+  RutCliente: '901408098-2',
+  NombreTercero: 'AGUA POTABLE VELASQUEZ SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 39 A 38 A 64 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3108501140,
+  nombreContacto: 'AGUA POTABLE VELASQUEZ SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3d'),
+  RutCliente: '900298456-9',
+  NombreTercero: 'AIRGAS DE COLOMBIA SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 72D BIS 42C 62 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6014929836,
+  nombreContacto: 'AIRGAS DE COLOMBIA SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3e'),
+  RutCliente: '79791143-5',
+  NombreTercero: 'ALEJANDRO ALARCON DIAZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 75 70 F 38 LC 5',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3213153531,
+  nombreContacto: 'ALEJANDRO ALARCON DIAZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3f'),
+  RutCliente: '1056908524-0',
+  NombreTercero: 'ALEX ANTONIO BARRERA CASTRO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'DG 49 A 53 A 48',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3168262346,
+  nombreContacto: 'ALEX ANTONIO BARRERA CASTRO'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa40'),
+  RutCliente: '7063136-9',
+  NombreTercero: 'ALEXIS ALFONSO RINCON',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 5 A SUR 13 57',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3208004142,
+  nombreContacto: 'ALEXIS ALFONSO RINCON'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa41'),
+  RutCliente: '860503617-3',
+  NombreTercero: 'ALFA',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Av. calle 24A #59',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa42'),
+  RutCliente: '19443263-0',
+  NombreTercero: 'ALFONSO EDUARDO N NIETO MORA',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CR 15   4   44 SUR BRR SAN ANTONIO',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3112232207,
+  nombreContacto: 'ALFONSO EDUARDO N NIETO MORA'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa43'),
+  RutCliente: '830113831-0',
+  NombreTercero: 'Aliansalud',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cr 8 38 - 31',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa44'),
+  RutCliente: '901240125-1',
+  NombreTercero: 'ALIANZA TRANSPORTADORA PREMIUM SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 96 I 15 C 70',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3125623371,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa45'),
+  RutCliente: '901818342-4',
+  NombreTercero: 'ALMACEN Y TALLER CHITARAQUE S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'KILOMETRO 0.2 VIA SIBERIA FUNZA',
+  ciudadCliente: 'Tenjo',
+  TelefonoCliente: 3105783667,
+  nombreContacto: 'ALMACEN Y TALLER CHITARAQUE S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa46'),
+  RutCliente: '79128266-0',
+  NombreTercero: 'ALONSO RODRIGUEZ GUERRERO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CRA 104 15A 38 BL 6 CA 21',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3214920357,
+  nombreContacto: 'ALONSO RODRIGUEZ GUERRERO'
+}
+db.Cliente.find({ NombreTercero: "Aliansalud" }).pretty()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa43'),
+  RutCliente: '830113831-0',
+  NombreTercero: 'Aliansalud',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cr 8 38 - 31',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+db.Cliente.find({ ciudadCliente: "Tenjo" }).pretty()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa45'),
+  RutCliente: '901818342-4',
+  NombreTercero: 'ALMACEN Y TALLER CHITARAQUE S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'KILOMETRO 0.2 VIA SIBERIA FUNZA',
+  ciudadCliente: 'Tenjo',
+  TelefonoCliente: 3105783667,
+  nombreContacto: 'ALMACEN Y TALLER CHITARAQUE S.A.S'
+}
+db.Cliente.countDocuments()
+20
+db.Cliente.find({ TelefonoCliente: { $regex: "78" } }).pretty()
+db.Cliente.find({ dirreccionCliente: " Tv. 23 # 97-73" }).pretty()
+db.Cliente.find({ dirreccionCliente: "KILOMETRO 0.2 VIA SIBERIA FUNZA" }).pretty()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa45'),
+  RutCliente: '901818342-4',
+  NombreTercero: 'ALMACEN Y TALLER CHITARAQUE S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'KILOMETRO 0.2 VIA SIBERIA FUNZA',
+  ciudadCliente: 'Tenjo',
+  TelefonoCliente: 3105783667,
+  nombreContacto: 'ALMACEN Y TALLER CHITARAQUE S.A.S'
+}
+db.Usuario.find({ nombreUsuario: "nombre_usuario" }).pretty()
+db.Usuario.find({ nombreUsuario: "Jaqueline" }).pretty()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+db.Usuario.find({ correoUsuario: "superbrey@gmail.com" }).pretty()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa32'),
+  idUsuario: 7720166,
+  nombreUsuario: 'Breyner',
+  apellidoUsuario: 'Solano',
+  telefonoUsuario: 3013077791,
+  correoUsuario: 'superbrey@gmail.com'
+}
+db.Usuario.countDocuments()
+2
+db.Usuario.find().sort({ apellidoUsuario: 1 }).pretty()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa32'),
+  idUsuario: 7720166,
+  nombreUsuario: 'Breyner',
+  apellidoUsuario: 'Solano',
+  telefonoUsuario: 3013077791,
+  correoUsuario: 'superbrey@gmail.com'
+}
+db.Usuario.find({ telefonoUsuario: { $regex: "^3" } }).pretty()
+db.Usuario.find({ idUsuario: 36306093 }).pretty()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+db.Contenedor.find({ naviera: "MAERKS" }).pretty()
+{
+  _id: ObjectId('6735459269fcfe1c0393fa65'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa56'),
+  FacturaContenedor: 'CO-230814-024CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-08-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa66'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa57'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-06T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa67'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa58'),
+  FacturaContenedor: 'CO 230912-001CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-20T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa68'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa59'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-28T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6a'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5b'),
+  FacturaContenedor: 'CO-23116-012CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6d'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5e'),
+  FacturaContenedor: 'CO-240215-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-04-24T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa71'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa62'),
+  FacturaContenedor: 'CO-240510-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+db.Contenedor.find({
+    fechaLlegada: { 
+        $gte: new Date("2024-01-01"), 
+        $lte: new Date("2024-10-08") 
+    }
+}).pretty()
+{
+  _id: ObjectId('6735459269fcfe1c0393fa69'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5a'),
+  FacturaContenedor: 'CO 231011-011CN',
+  naviera: 'Yang ming',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-01-01T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6a'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5b'),
+  FacturaContenedor: 'CO-23116-012CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6b'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5c'),
+  FacturaContenedor: 'CO-231116-011CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-03-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6c'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5d'),
+  FacturaContenedor: 'CO-240115-007CN',
+  naviera: 'CARGO LOGISTIC',
+  agenteAduanera: 'Cargo logistoc',
+  fechaLlegada: 2024-04-06T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6d'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5e'),
+  FacturaContenedor: 'CO-240215-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-04-24T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6e'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5f'),
+  FacturaContenedor: 'CO-240320-004CN',
+  naviera: 'ROLCO SHIPPING',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-06-29T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6f'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa60'),
+  FacturaContenedor: 'CO-240517 007CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa70'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa61'),
+  FacturaContenedor: 'CO-240405 001CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa71'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa62'),
+  FacturaContenedor: 'CO-240510-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa72'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa63'),
+  FacturaContenedor: 'C0-2345',
+  naviera: 'maerks',
+  agenteAduanera: 'cargo logistic',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+db.Contenedor.find({ 
+    FacturaContenedor: { $regex: "23" } 
+}).pretty()
+{
+  _id: ObjectId('6735459269fcfe1c0393fa64'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa55'),
+  FacturaContenedor: 'CO-230713-017CN',
+  naviera: 'Maerks',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-07-03T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa65'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa56'),
+  FacturaContenedor: 'CO-230814-024CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-08-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa66'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa57'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-06T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa67'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa58'),
+  FacturaContenedor: 'CO 230912-001CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-20T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa68'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa59'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-28T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa69'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5a'),
+  FacturaContenedor: 'CO 231011-011CN',
+  naviera: 'Yang ming',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-01-01T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6a'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5b'),
+  FacturaContenedor: 'CO-23116-012CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6b'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5c'),
+  FacturaContenedor: 'CO-231116-011CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-03-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa72'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa63'),
+  FacturaContenedor: 'C0-2345',
+  naviera: 'maerks',
+  agenteAduanera: 'cargo logistic',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+db.Contenedor.find(
+    { idContenedor: { $gte: 10 } }, 
+    { FacturaContenedor: 1, _id: 0 }
+)
+db.Contenedor.countDocuments()
+15
+db.Contenedor.find().sort({ fechaLlegada: -1 }).pretty()
+{
+  _id: ObjectId('6735459269fcfe1c0393fa71'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa62'),
+  FacturaContenedor: 'CO-240510-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa72'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa63'),
+  FacturaContenedor: 'C0-2345',
+  naviera: 'maerks',
+  agenteAduanera: 'cargo logistic',
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6f'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa60'),
+  FacturaContenedor: 'CO-240517 007CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa70'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa61'),
+  FacturaContenedor: 'CO-240405 001CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6e'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5f'),
+  FacturaContenedor: 'CO-240320-004CN',
+  naviera: 'ROLCO SHIPPING',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-06-29T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6d'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5e'),
+  FacturaContenedor: 'CO-240215-007CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-04-24T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6c'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5d'),
+  FacturaContenedor: 'CO-240115-007CN',
+  naviera: 'CARGO LOGISTIC',
+  agenteAduanera: 'Cargo logistoc',
+  fechaLlegada: 2024-04-06T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6b'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5c'),
+  FacturaContenedor: 'CO-231116-011CN',
+  naviera: 'WAN HAI',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-03-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa6a'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5b'),
+  FacturaContenedor: 'CO-23116-012CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-02-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa69'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa5a'),
+  FacturaContenedor: 'CO 231011-011CN',
+  naviera: 'Yang ming',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2024-01-01T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa68'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa59'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-28T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa67'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa58'),
+  FacturaContenedor: 'CO 230912-001CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-20T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa66'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa57'),
+  FacturaContenedor: 'CO 230912-002CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-12-06T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa65'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa56'),
+  FacturaContenedor: 'CO-230814-024CN',
+  naviera: 'MAERKS',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-08-14T00:00:00.000Z
+}
+{
+  _id: ObjectId('6735459269fcfe1c0393fa64'),
+  idContenedor: ObjectId('6735459269fcfe1c0393fa55'),
+  FacturaContenedor: 'CO-230713-017CN',
+  naviera: 'Maerks',
+  agenteAduanera: 'CARGO LOGISTIC',
+  fechaLlegada: 2023-07-03T00:00:00.000Z
+}
+db.Contenedor.find(
+    { FacturaContenedor: { $regex: "24" } }, 
+    { fechaLlegada: 1, _id: 0 }
+)
+{
+  fechaLlegada: 2023-08-14T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-04-06T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-04-24T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-06-29T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-07-09T00:00:00.000Z
+}
+{
+  fechaLlegada: 2024-08-04T00:00:00.000Z
+}
+db.Venta.find({ metodoPago: "Transferencia" }).pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa76'),
+  numOrden: 4,
+  fechacompra: 2024-01-04T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830027461-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa79'),
+  numOrden: 7,
+  fechacompra: 2024-01-07T00:00:00.000Z,
+  totalcompra: 2000000,
+  idusuariofk: 36306093,
+  rutclientefk: '1090375435-8',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 7
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7d'),
+  numOrden: 11,
+  fechacompra: 2024-01-11T00:00:00.000Z,
+  totalcompra: 1700000,
+  idusuariofk: 36306093,
+  rutclientefk: '79791143-5',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 11
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa81'),
+  numOrden: 15,
+  fechacompra: 2024-01-15T00:00:00.000Z,
+  totalcompra: 7000000,
+  idusuariofk: 36306093,
+  rutclientefk: '19443263-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa85'),
+  numOrden: 19,
+  fechacompra: 2024-01-19T00:00:00.000Z,
+  totalcompra: 1100000,
+  idusuariofk: 36306093,
+  rutclientefk: '79128266-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 5
+}
+db.Venta.find().sort({ totalcompra: -1 }).pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa81'),
+  numOrden: 15,
+  fechacompra: 2024-01-15T00:00:00.000Z,
+  totalcompra: 7000000,
+  idusuariofk: 36306093,
+  rutclientefk: '19443263-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa78'),
+  numOrden: 6,
+  fechacompra: 2024-01-06T00:00:00.000Z,
+  totalcompra: 6000000,
+  idusuariofk: 7720166,
+  rutclientefk: '3242138-7',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 6
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7a'),
+  numOrden: 8,
+  fechacompra: 2024-01-08T00:00:00.000Z,
+  totalcompra: 5500000,
+  idusuariofk: 7720166,
+  rutclientefk: '900453866-1',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa73'),
+  numOrden: 1,
+  fechacompra: 2024-01-01T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 36306093,
+  rutclientefk: '900769308-9',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 1
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa80'),
+  numOrden: 14,
+  fechacompra: 2024-01-14T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 7720166,
+  rutclientefk: '860503617-3',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 14
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa77'),
+  numOrden: 5,
+  fechacompra: 2024-01-05T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '800138188-1',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7f'),
+  numOrden: 13,
+  fechacompra: 2024-01-13T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '7063136-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa86'),
+  numOrden: 20,
+  fechacompra: 2024-01-20T00:00:00.000Z,
+  totalcompra: 4000000,
+  idusuariofk: 7720166,
+  rutclientefk: '19213923-7',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 1
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7b'),
+  numOrden: 9,
+  fechacompra: 2024-01-09T00:00:00.000Z,
+  totalcompra: 3500000,
+  idusuariofk: 36306093,
+  rutclientefk: '901408098-2',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 9
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa76'),
+  numOrden: 4,
+  fechacompra: 2024-01-04T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830027461-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa82'),
+  numOrden: 16,
+  fechacompra: 2024-01-16T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830113831-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa74'),
+  numOrden: 2,
+  fechacompra: 2024-01-02T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 36306093,
+  rutclientefk: '817001773-3',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 2
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa84'),
+  numOrden: 18,
+  fechacompra: 2024-01-18T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 7720166,
+  rutclientefk: '901818342-4',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7e'),
+  numOrden: 12,
+  fechacompra: 2024-01-12T00:00:00.000Z,
+  totalcompra: 2100000,
+  idusuariofk: 7720166,
+  rutclientefk: '1056908524-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 12
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa79'),
+  numOrden: 7,
+  fechacompra: 2024-01-07T00:00:00.000Z,
+  totalcompra: 2000000,
+  idusuariofk: 36306093,
+  rutclientefk: '1090375435-8',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 7
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7d'),
+  numOrden: 11,
+  fechacompra: 2024-01-11T00:00:00.000Z,
+  totalcompra: 1700000,
+  idusuariofk: 36306093,
+  rutclientefk: '79791143-5',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 11
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa75'),
+  numOrden: 3,
+  fechacompra: 2024-01-03T00:00:00.000Z,
+  totalcompra: 1500000,
+  idusuariofk: 7720166,
+  rutclientefk: '830078512-6',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7c'),
+  numOrden: 10,
+  fechacompra: 2024-01-10T00:00:00.000Z,
+  totalcompra: 1200000,
+  idusuariofk: 7720166,
+  rutclientefk: '900298456-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 10
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa85'),
+  numOrden: 19,
+  fechacompra: 2024-01-19T00:00:00.000Z,
+  totalcompra: 1100000,
+  idusuariofk: 36306093,
+  rutclientefk: '79128266-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa83'),
+  numOrden: 17,
+  fechacompra: 2024-01-17T00:00:00.000Z,
+  totalcompra: 1000000,
+  idusuariofk: 36306093,
+  rutclientefk: '901240125-1',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 3
+}
+db.Venta.find({
+    fechacompra: {
+        $gte: new Date("2024-01-01"),
+        $lte: new Date("2024-01-31")
+    }
+}).pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa73'),
+  numOrden: 1,
+  fechacompra: 2024-01-01T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 36306093,
+  rutclientefk: '900769308-9',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 1
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa74'),
+  numOrden: 2,
+  fechacompra: 2024-01-02T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 36306093,
+  rutclientefk: '817001773-3',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 2
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa75'),
+  numOrden: 3,
+  fechacompra: 2024-01-03T00:00:00.000Z,
+  totalcompra: 1500000,
+  idusuariofk: 7720166,
+  rutclientefk: '830078512-6',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa76'),
+  numOrden: 4,
+  fechacompra: 2024-01-04T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830027461-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa77'),
+  numOrden: 5,
+  fechacompra: 2024-01-05T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '800138188-1',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa78'),
+  numOrden: 6,
+  fechacompra: 2024-01-06T00:00:00.000Z,
+  totalcompra: 6000000,
+  idusuariofk: 7720166,
+  rutclientefk: '3242138-7',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 6
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa79'),
+  numOrden: 7,
+  fechacompra: 2024-01-07T00:00:00.000Z,
+  totalcompra: 2000000,
+  idusuariofk: 36306093,
+  rutclientefk: '1090375435-8',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 7
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7a'),
+  numOrden: 8,
+  fechacompra: 2024-01-08T00:00:00.000Z,
+  totalcompra: 5500000,
+  idusuariofk: 7720166,
+  rutclientefk: '900453866-1',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7b'),
+  numOrden: 9,
+  fechacompra: 2024-01-09T00:00:00.000Z,
+  totalcompra: 3500000,
+  idusuariofk: 36306093,
+  rutclientefk: '901408098-2',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 9
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7c'),
+  numOrden: 10,
+  fechacompra: 2024-01-10T00:00:00.000Z,
+  totalcompra: 1200000,
+  idusuariofk: 7720166,
+  rutclientefk: '900298456-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 10
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7d'),
+  numOrden: 11,
+  fechacompra: 2024-01-11T00:00:00.000Z,
+  totalcompra: 1700000,
+  idusuariofk: 36306093,
+  rutclientefk: '79791143-5',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 11
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7e'),
+  numOrden: 12,
+  fechacompra: 2024-01-12T00:00:00.000Z,
+  totalcompra: 2100000,
+  idusuariofk: 7720166,
+  rutclientefk: '1056908524-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 12
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7f'),
+  numOrden: 13,
+  fechacompra: 2024-01-13T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '7063136-9',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa80'),
+  numOrden: 14,
+  fechacompra: 2024-01-14T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 7720166,
+  rutclientefk: '860503617-3',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 14
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa81'),
+  numOrden: 15,
+  fechacompra: 2024-01-15T00:00:00.000Z,
+  totalcompra: 7000000,
+  idusuariofk: 36306093,
+  rutclientefk: '19443263-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 13
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa82'),
+  numOrden: 16,
+  fechacompra: 2024-01-16T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830113831-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa83'),
+  numOrden: 17,
+  fechacompra: 2024-01-17T00:00:00.000Z,
+  totalcompra: 1000000,
+  idusuariofk: 36306093,
+  rutclientefk: '901240125-1',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa84'),
+  numOrden: 18,
+  fechacompra: 2024-01-18T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 7720166,
+  rutclientefk: '901818342-4',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa85'),
+  numOrden: 19,
+  fechacompra: 2024-01-19T00:00:00.000Z,
+  totalcompra: 1100000,
+  idusuariofk: 36306093,
+  rutclientefk: '79128266-0',
+  metodoPago: 'Transferencia',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa86'),
+  numOrden: 20,
+  fechacompra: 2024-01-20T00:00:00.000Z,
+  totalcompra: 4000000,
+  idusuariofk: 7720166,
+  rutclientefk: '19213923-7',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 1
+}
+db.Venta.find({ rutclientefk: "3242138-7" }).pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa78'),
+  numOrden: 6,
+  fechacompra: 2024-01-06T00:00:00.000Z,
+  totalcompra: 6000000,
+  idusuariofk: 7720166,
+  rutclientefk: '3242138-7',
+  metodoPago: 'Efectivo',
+  idContenedorFK: 6
+}
+db.Venta.find({ metodoPago: { $regex: "Tarjeta" } }).pretty()
+{
+  _id: ObjectId('6735461269fcfe1c0393fa73'),
+  numOrden: 1,
+  fechacompra: 2024-01-01T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 36306093,
+  rutclientefk: '900769308-9',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 1
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa75'),
+  numOrden: 3,
+  fechacompra: 2024-01-03T00:00:00.000Z,
+  totalcompra: 1500000,
+  idusuariofk: 7720166,
+  rutclientefk: '830078512-6',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 3
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa77'),
+  numOrden: 5,
+  fechacompra: 2024-01-05T00:00:00.000Z,
+  totalcompra: 4500000,
+  idusuariofk: 36306093,
+  rutclientefk: '800138188-1',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 5
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7a'),
+  numOrden: 8,
+  fechacompra: 2024-01-08T00:00:00.000Z,
+  totalcompra: 5500000,
+  idusuariofk: 7720166,
+  rutclientefk: '900453866-1',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7b'),
+  numOrden: 9,
+  fechacompra: 2024-01-09T00:00:00.000Z,
+  totalcompra: 3500000,
+  idusuariofk: 36306093,
+  rutclientefk: '901408098-2',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 9
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa7e'),
+  numOrden: 12,
+  fechacompra: 2024-01-12T00:00:00.000Z,
+  totalcompra: 2100000,
+  idusuariofk: 7720166,
+  rutclientefk: '1056908524-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 12
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa80'),
+  numOrden: 14,
+  fechacompra: 2024-01-14T00:00:00.000Z,
+  totalcompra: 5000000,
+  idusuariofk: 7720166,
+  rutclientefk: '860503617-3',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 14
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa82'),
+  numOrden: 16,
+  fechacompra: 2024-01-16T00:00:00.000Z,
+  totalcompra: 3000000,
+  idusuariofk: 7720166,
+  rutclientefk: '830113831-0',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 4
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa84'),
+  numOrden: 18,
+  fechacompra: 2024-01-18T00:00:00.000Z,
+  totalcompra: 2500000,
+  idusuariofk: 7720166,
+  rutclientefk: '901818342-4',
+  metodoPago: 'Tarjeta de crédito',
+  idContenedorFK: 8
+}
+{
+  _id: ObjectId('6735461269fcfe1c0393fa86'),
+  numOrden: 20,
+  fechacompra: 2024-01-20T00:00:00.000Z,
+  totalcompra: 4000000,
+  idusuariofk: 7720166,
+  rutclientefk: '19213923-7',
+  metodoPago: 'Tarjeta de débito',
+  idContenedorFK: 1
+}
+db.Producto.find({ cantidad: { $lt: 50 } }).pretty()
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4b'),
+  referenciaProducto: 'mix wokrs Z2',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1133000,
+  cantidad: 44
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4e'),
+  referenciaProducto: 'ws806',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1250000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa51'),
+  referenciaProducto: 'mix wokrs Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'mixto',
+  marca: 'XBRI',
+  precio: 989000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa52'),
+  referenciaProducto: 'zigzag Z6',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 1100000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa54'),
+  referenciaProducto: 'forza block P2',
+  dimensionProducto: '12R22.5',
+  'diseñoProducto': 'tracción mixta',
+  marca: 'XBRI',
+  precio: 1300000,
+  cantidad: 20
+}
+db.Producto.find({ dimensionProducto: "29580R22.5" }).pretty()
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4a'),
+  referenciaProducto: 'xforza Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1145000,
+  cantidad: 124
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4b'),
+  referenciaProducto: 'mix wokrs Z2',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1133000,
+  cantidad: 44
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4c'),
+  referenciaProducto: 'forza plus',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1120000,
+  cantidad: 244
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4d'),
+  referenciaProducto: 'xforza',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1000000,
+  cantidad: 91
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4e'),
+  referenciaProducto: 'ws806',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1250000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4f'),
+  referenciaProducto: 'ecoplus P2',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 925000,
+  cantidad: 254
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa50'),
+  referenciaProducto: 'xcurve Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 986000,
+  cantidad: 60
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa51'),
+  referenciaProducto: 'mix wokrs Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'mixto',
+  marca: 'XBRI',
+  precio: 989000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa52'),
+  referenciaProducto: 'zigzag Z6',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 1100000,
+  cantidad: 40
+}
+db.Producto.find({ marca: "XBRI" }).pretty()
+{
+  _id: ObjectId('673544f969fcfe1c0393fa47'),
+  referenciaProducto: 'ecoplus C2',
+  dimensionProducto: '21575/R17.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 1140000,
+  cantidad: 100
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa48'),
+  referenciaProducto: 'xforza P1',
+  dimensionProducto: '235/75R17.5',
+  'diseñoProducto': 'tracción',
+  marca: 'XBRI',
+  precio: 1146000,
+  cantidad: 124
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa49'),
+  referenciaProducto: 'ecoway P1',
+  dimensionProducto: '235/75R17.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 600000,
+  cantidad: 80
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4a'),
+  referenciaProducto: 'xforza Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1145000,
+  cantidad: 124
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4b'),
+  referenciaProducto: 'mix wokrs Z2',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1133000,
+  cantidad: 44
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4c'),
+  referenciaProducto: 'forza plus',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1120000,
+  cantidad: 244
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4d'),
+  referenciaProducto: 'xforza',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1000000,
+  cantidad: 91
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4e'),
+  referenciaProducto: 'ws806',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'traccion',
+  marca: 'XBRI',
+  precio: 1250000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa4f'),
+  referenciaProducto: 'ecoplus P2',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 925000,
+  cantidad: 254
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa50'),
+  referenciaProducto: 'xcurve Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 986000,
+  cantidad: 60
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa51'),
+  referenciaProducto: 'mix wokrs Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'mixto',
+  marca: 'XBRI',
+  precio: 989000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa52'),
+  referenciaProducto: 'zigzag Z6',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'direccional',
+  marca: 'XBRI',
+  precio: 1100000,
+  cantidad: 40
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa53'),
+  referenciaProducto: 'forza block P1',
+  dimensionProducto: '12R22.5',
+  'diseñoProducto': 'tracción severa',
+  marca: 'XBRI',
+  precio: 1100000,
+  cantidad: 50
+}
+{
+  _id: ObjectId('673544f969fcfe1c0393fa54'),
+  referenciaProducto: 'forza block P2',
+  dimensionProducto: '12R22.5',
+  'diseñoProducto': 'tracción mixta',
+  marca: 'XBRI',
+  precio: 1300000,
+  cantidad: 20
+}
+db.Producto.find({ diseñoProducto: "tracción" }).pretty()
+{
+  _id: ObjectId('673544f969fcfe1c0393fa48'),
+  referenciaProducto: 'xforza P1',
+  dimensionProducto: '235/75R17.5',
+  'diseñoProducto': 'tracción',
+  marca: 'XBRI',
+  precio: 1146000,
+  cantidad: 124
+}
+db.Producto.find({ diseñoProducto: { $regex: "mixto" } }).pretty()
+{
+  _id: ObjectId('673544f969fcfe1c0393fa51'),
+  referenciaProducto: 'mix wokrs Z1',
+  dimensionProducto: '29580R22.5',
+  'diseñoProducto': 'mixto',
+  marca: 'XBRI',
+  precio: 989000,
+  cantidad: 40
+}
+db.Cliente.updateOne(
+    { RutCliente: "8" }, 
+    { $set: { NombreTercero: "nuevo_nombre" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: "8" }, 
+    { $set: { NombreTercero: "AGRETRANS JAS SAS" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: "900298456-9" }, 
+    { $set: { NombreTercero: "AGRETRANS JAS SAS" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+show.Cliente
+db.Cliente.find()
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa33'),
+  RutCliente: '900769308-9',
+  NombreTercero: 'A&E CONTAINER S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CL 10 N 14 A 85 SUR TO 9 AP 733',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018938608,
+  nombreContacto: 'A&E CONTAINER S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa34'),
+  RutCliente: '817001773-3',
+  NombreTercero: 'A.I.C.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cra. 36c #5B2-32',
+  ciudadCliente: 'Cali',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa35'),
+  RutCliente: '830078512-6',
+  NombreTercero: 'ACH Colombia S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Tv. 23 # 97-73',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6017444686,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa36'),
+  RutCliente: '830027461-0',
+  NombreTercero: 'ADDEC S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 2 4 88',
+  ciudadCliente: 'Mosquera',
+  TelefonoCliente: 6018295603,
+  nombreContacto: 'ADDEC SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa37'),
+  RutCliente: '800138188-1',
+  NombreTercero: 'Administradora de Fondos de Pensiones y Cesantía Protección S.A.',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Calle 49 No. 63 - 100',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa38'),
+  RutCliente: '3242138-7',
+  NombreTercero: 'ADOLFO MORA GIL',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 6 3 20',
+  ciudadCliente: 'Madrid',
+  TelefonoCliente: 3108119206,
+  nombreContacto: 'ADOLFO MORA GIL'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa39'),
+  RutCliente: '1090375435-8',
+  NombreTercero: 'ADRIANA JIMENEZ PEREZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'K D X 30 VDA PORVENIR',
+  ciudadCliente: 'El Zulia',
+  TelefonoCliente: 3202599901,
+  nombreContacto: 'ADRIANA JIMENEZ PEREZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3a'),
+  RutCliente: '901255510-8',
+  NombreTercero: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 28B 78 77 OFC 401',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6016298190,
+  nombreContacto: 'AGENCIA DE ADUANAS MAG CUSTOMS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3b'),
+  RutCliente: '900453866-1',
+  NombreTercero: 'AGRETRANS JAS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CRA 123 13 21 IN  6 1',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6019192757,
+  nombreContacto: 'AGRETRANS JAS SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3c'),
+  RutCliente: '901408098-2',
+  NombreTercero: 'AGUA POTABLE VELASQUEZ SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 39 A 38 A 64 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3108501140,
+  nombreContacto: 'AGUA POTABLE VELASQUEZ SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3d'),
+  RutCliente: '900298456-9',
+  NombreTercero: 'AGRETRANS JAS SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'TV 72D BIS 42C 62 SUR',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 6014929836,
+  nombreContacto: 'AIRGAS DE COLOMBIA SAS'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3e'),
+  RutCliente: '79791143-5',
+  NombreTercero: 'ALEJANDRO ALARCON DIAZ',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 75 70 F 38 LC 5',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3213153531,
+  nombreContacto: 'ALEJANDRO ALARCON DIAZ'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa3f'),
+  RutCliente: '1056908524-0',
+  NombreTercero: 'ALEX ANTONIO BARRERA CASTRO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'DG 49 A 53 A 48',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3168262346,
+  nombreContacto: 'ALEX ANTONIO BARRERA CASTRO'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa40'),
+  RutCliente: '7063136-9',
+  NombreTercero: 'ALEXIS ALFONSO RINCON',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CL 5 A SUR 13 57',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3208004142,
+  nombreContacto: 'ALEXIS ALFONSO RINCON'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa41'),
+  RutCliente: '860503617-3',
+  NombreTercero: 'ALFA',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Av. calle 24A #59',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa42'),
+  RutCliente: '19443263-0',
+  NombreTercero: 'ALFONSO EDUARDO N NIETO MORA',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CR 15   4   44 SUR BRR SAN ANTONIO',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3112232207,
+  nombreContacto: 'ALFONSO EDUARDO N NIETO MORA'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa43'),
+  RutCliente: '830113831-0',
+  NombreTercero: 'Aliansalud',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'Cr 8 38 - 31',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 419430400,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa44'),
+  RutCliente: '901240125-1',
+  NombreTercero: 'ALIANZA TRANSPORTADORA PREMIUM SAS',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'CR 96 I 15 C 70',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3125623371,
+  nombreContacto: ''
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa45'),
+  RutCliente: '901818342-4',
+  NombreTercero: 'ALMACEN Y TALLER CHITARAQUE S.A.S',
+  TipoIdentificacion: 'NIT',
+  dirreccionCliente: 'KILOMETRO 0.2 VIA SIBERIA FUNZA',
+  ciudadCliente: 'Tenjo',
+  TelefonoCliente: 3105783667,
+  nombreContacto: 'ALMACEN Y TALLER CHITARAQUE S.A.S'
+}
+{
+  _id: ObjectId('673544bf69fcfe1c0393fa46'),
+  RutCliente: '79128266-0',
+  NombreTercero: 'ALONSO RODRIGUEZ GUERRERO',
+  TipoIdentificacion: 'Cédula',
+  dirreccionCliente: 'CRA 104 15A 38 BL 6 CA 21',
+  ciudadCliente: 'Bogotá',
+  TelefonoCliente: 3214920357,
+  nombreContacto: 'ALONSO RODRIGUEZ GUERRERO'
+}
+db.Cliente.updateOne(
+    { RutCliente: "830113831-0" }, 
+    { $set: { dirreccionCliente: "Calle 78 #23-54" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: "830113831-0" }, 
+    { $set: { TelefonoCliente: "3186457834" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: "79128266-0" }, 
+    { $set: { ciudadCliente: "Ibagué" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: " 860503617-3" }, 
+    { $set: { nombreContacto: "Pedro Perez" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: " 19443263-0" }, 
+    { $set: { nombreContacto: "Pedro Perez" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Cliente.updateOne(
+    { RutCliente: " 19443263-7" }, 
+    { $set: { nombreContacto: "ALFONSO EDUARDO N NIETO MORA" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.Usuario.updateOne(
+    { idUsuario: 7720166 }, 
+    { $set: { nombreUsuario: "Alberto" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Usuario.find()
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa31'),
+  idUsuario: 36306093,
+  nombreUsuario: 'Jaqueline',
+  apellidoUsuario: 'Bocanegra',
+  telefonoUsuario: 3107626827,
+  correoUsuario: 'jaquelinebb65@gmail.com'
+}
+{
+  _id: ObjectId('6735261e69fcfe1c0393fa32'),
+  idUsuario: 7720166,
+  nombreUsuario: 'Alberto',
+  apellidoUsuario: 'Solano',
+  telefonoUsuario: 3013077791,
+  correoUsuario: 'superbrey@gmail.com'
+}
+db.Usuario.updateOne(
+    { idUsuario: 36306093 }, 
+    { $set: { correoUsuario: "jaquelinebocanegra18@gmail.com" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Usuario.updateOne(
+    { idUsuario: 36306093 }, 
+    { $set: { telefonoUsuario: "3146782349" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Usuario.updateOne(
+    { idUsuario: 7720166}, 
+    { $set: { apellidoUsuario: "bocanegra" } }
+)
+}
+db.Venta.updateOne(
+    { numOrden: 1 },
+    { $set: { metodoPago: "Transferencia" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Venta.updateOne(
+    { numOrden: 6 },
+    { $set: { rutClienteFK: "901408098-2" } }
+)
+db.Venta.updateOne(
+    { numOrden: 3 },
+    { $set: { fechaCompra: new Date("2024-02-01") } }
+)
+db.Venta.updateMany(
+    { numOrden: { $gt: 12} },
+    { $set: { idContenedorFK:  ObjectId('6735459269fcfe1c0393fa63') } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 8,
+  modifiedCount: 8,
+  upsertedCount: 0
+}
+db.Venta.updateOne(
+    { numOrden: 3 },
+    { $set: { fechaCompra: new Date("2024-01-03") } }
+)
+db.Contenedor.find({ naviera: "maerks" }).pretty()
+)
+db.Contenedor.find({ idContenedor: ObjectId('6735459269fcfe1c0393fa61') }).pretty()
+)
+db.Contenedor.find({
+    naviera: "WAN HAI",
+    fechaLlegada: { $gt: new Date("2024-07-01") }
+}).pretty()
+)
+db.Contenedor.find({
+    agenteAduanera: { $ne: "CARGO LOGISTIC" }
+}).pretty()
+
+db.Producto.updateOne(
+    { referenciaProducto: "forza plus" },
+    { $set: { precio: 1200000 } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Producto.updateOne(
+    { referenciaProducto: "xforza Z1" },
+    { $set: { cantidad: 150 } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Producto.updateOne(
+    { referenciaProducto: "zigzag Z6" },
+    { $set: { dimensionProducto: "30580R22.5" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Producto.updateOne(
+    { referenciaProducto: "ecoplus C2" },
+    { $set: { diseñoProducto: "mixto" } }
+)
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.Producto.updateOne(
+    { referenciaProducto: "xforza P1" },
+    { $set: { marca: "Pirelli" } }
+)
+db.Cliente.deleteOne({ RutCliente: "900769308-9" })
+)
+db.Usuario.deleteOne({ idUsuario: 7720166 })
+)
+db.Venta.deleteMany({
+    fechaCompra: { $lt: new Date("2024-01-04T00:00:00.000+00:00") }
+})
+db.Producto.deleteMany({ precio: { $lt: 1000000 } })
+{
+  acknowledged: true,
+  deletedCount: 4
+}
+db.Contenedor.deleteOne({ _id: ObjectId('6735459269fcfe1c0393fa64') })
+)
+db.detalleVenta.aggregate([
+    {
+        $lookup: {
+            from: "Producto",      
+            localField: "referenciaProductoFK", 
+            foreignField: "referenciaProducto",  
+            as: "DetallesProducto"   
+        }
+    },
+    {
+        $lookup: {
+            from: "Venta",      
+            localField: "numOrdenFK",
+            foreignField: "numOrden",
+            as: "DetallesVenta"      
+        }
+    },
+    {
+        $project: {
+            referenciaProductoFK: 1,
+            "DetallesProducto.dimensionProducto": 1,
+            "DetallesProducto.diseñoProducto": 1,
+            "DetallesProducto.precio": 1,
+            numOrdenFK: 1,
+            "DetallesVenta.fechacompra": 1,
+            "DetallesVenta.totalcompra": 1
+        }
+    }
+]).pretty()
+
