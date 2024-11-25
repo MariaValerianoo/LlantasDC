@@ -3,7 +3,7 @@ import { contenedorModel } from "../model/contenedorModel.js";
 //Funcion obtener datos
 export const obtenerContenedor = async (peticion, respuesta) => {
     try {
-        let contenedor = await userModel.find()
+        let contenedor = await contenedorModel.find()
         respuesta.status(200).json("index", { contenedor })
     } catch (error) {
         console.log(error);
@@ -11,26 +11,23 @@ export const obtenerContenedor = async (peticion, respuesta) => {
 }
 
 //Funcion crear contenedor
-export const crearContenedor = async (peticion, respuesta) => {
+
+export const crearContenedor = async (req, res) => {
     try {
-        const contenedor = peticion.body;
-
-        if (!Array.isArray(contenedor)) {
-        return respuesta.status(400).render("error", { error: 'La solicitud debe ser una lista de contenedores' });
-        }
-        await userModel.insertMany(contenedor);
-        const todosLosContenedores = await userModel.find();
-        res.status(201).render("index", { contenedores: todosLosContenedores });
-
+        const nuevoContenedor = new contenedorModel(req.body);
+        const contenedorGuardado = await nuevoContenedor.save();
+        res.status(201).json(contenedorGuardado); // 201 para "creado"
     } catch (error) {
-        console.log(error);
+        console.error("Error al crear el contenedor:", error);
+        res.status(500).json({ message: "Error al crear el contenedor" });
     }
-}
+};
+
 
 //buscar contendor por naviera 
 export const buscarContenedorNaviera = async (peticion,respuesta) => {
     try {
-        const contenedor = await userModel.findOne({ naviera: peticion.params.naviera });
+        const contenedor = await contenedorModel.findOne({ naviera: peticion.params.naviera });
         if (contenedor) {
           respuesta.status(200).json(contenedor);
         } else {
@@ -48,7 +45,7 @@ export const buscarIdMayor = async(peticion,respuesta)=>{
         if(!numero){
             return resultado.status(404).json({message:"Se necesita un número"});
         }
-        const facturas = await Contenedor.find({ idContenedor: { $gte: numero} }, { FacturaContenedor: 1 });
+        const facturas = await contenedorModel.find({ idContenedor: { $gte: numero} }, { FacturaContenedor: 1 });
 
         if (!facturas || facturas.length === 0) {
             return respuesta.status(404).json({ message: `No se encontraron facturas de contenedores con idContenedor >= ${numero}` });
@@ -67,7 +64,7 @@ export const buscarContenedorFecha =  async(peticion,respuesta)=>{
             return respuesta.status(400).json({message: "Debe proporcionar las fechas 'fechaInicio' y 'fechaFin' en la consulta." });
         }
 
-        const contenedores = await userModel.findMany({
+        const contenedores = await contenedorModel.findMany({
             fechaLlegada: {$gte: new Date(fechaInicio),$lte: new Date(fechaFin)}
         });
 
@@ -82,7 +79,7 @@ export const buscarContenedorFecha =  async(peticion,respuesta)=>{
 //cuantos contenedor hay
 export const contarContenedor = async(peticion,respuesta) => {
     try {
-        const cantidadContenedores = await userModel.countDocuments();
+        const cantidadContenedores = await contenedorModel.countDocuments();
         if(cantidadContenedores){
             respuesta.status(200).json(cantidadContenedores);
         }
@@ -95,7 +92,7 @@ export const contarContenedor = async(peticion,respuesta) => {
 export const buscarContenedorLikeFactura = async(peticion,respuesta) => {
     try {
         const numero = peticion.params;
-        const contenedorEncontrado = await userModel.findMany({facturacontenedor: { $regex: numero, $options: 'i' }});
+        const contenedorEncontrado = await contenedorModel.findMany({facturacontenedor: { $regex: numero, $options: 'i' }});
         
         if(contenedorEncontrado){
             respuesta.status(200).json(contenedorEncontrado);
@@ -108,7 +105,7 @@ export const buscarContenedorLikeFactura = async(peticion,respuesta) => {
 //Ordenar fechallegada de forma DES
 export const contenedorFechaLlegadaDES = async (peticion,respuesta) => {
     try {
-        const contenedores = await userModel.aggregate([
+        const contenedores = await contenedorModel.aggregate([
             {
                 $sort: { fechaLlegada: -1 } 
             }
@@ -130,7 +127,7 @@ export const buscarFechaFactura = async (peticion, respuesta) => {
         if (!numero) {
             return respuesta.status(400).json({ message: "Debe proporcionar un número" });
         }
-        const contenedores = await userModel.find(
+        const contenedores = await contenedorModel.find(
             { facturaContenedor: { $regex: numero, $options: "i" } }, 
             { fechaLlegada: 1, _id: 0 } 
         );
@@ -151,7 +148,7 @@ export const navieraId = async(peticion,respuesta)=>{
         if(!idContenedor || !nuevanaviera){
             return respuesta.satus(400).json({message:"Se necesitan id contenedor y naviera"});
         }
-        const navieraActualizada= await userModel.findByIdAndUpdate({idContenedor},{naviera:nuevanaviera},{new:true});
+        const navieraActualizada= await contenedorModel.findByIdAndUpdate({idContenedor},{naviera:nuevanaviera},{new:true});
 
         if(!navieraActualizada){
             return respuesta.satus(400).json({message:"Contenedor no encontrado"});
@@ -172,7 +169,7 @@ export const fechaLlegadaId = async(peticion,respuesta)=>{
         if(!idContenedor || !nuevafecha){
             return respuesta.satus(400).json({message:"Se necesitan id contenedor y fecha"});
         }
-        const fechaActualizada= await userModel.findByIdAndUpdate({idContenedor},{fechaLlegada:nuevafecha},{new:true});
+        const fechaActualizada= await contenedorModel.findByIdAndUpdate({idContenedor},{fechaLlegada:nuevafecha},{new:true});
 
         if(!fechaActualizada){
             return respuesta.satus(400).json({message:"Contenedor no encontrado"});
@@ -193,7 +190,7 @@ export const agenteAduaneraId = async(peticion,respuesta)=>{
         if(!idContenedor || !nuevaagente){
             return respuesta.satus(400).json({message:"Se necesitan id contenedor y agente aduanera"});
         }
-        const agenteActualizada= await userModel.findByIdAndUpdate({idContenedor},{agenteAduanera:nuevaagente},{new:true});
+        const agenteActualizada= await contenedorModel.findByIdAndUpdate({idContenedor},{agenteAduanera:nuevaagente},{new:true});
 
         if(!agenteActualizada){
             return respuesta.satus(400).json({message:"Contenedor no encontrado"});

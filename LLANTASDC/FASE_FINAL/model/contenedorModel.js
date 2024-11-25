@@ -18,7 +18,7 @@ const contenedorSchema=new mongoose.Schema({
     require: true
     },
     fechaLlegada:{
-        type: Date,
+        type: String,
         require: true
     }
 

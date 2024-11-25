@@ -3,7 +3,7 @@ import { usuarioModel } from "../model/usuarioModel.js";
 //Funcion obtener datos
 export const obtenerUsuarios = async (peticion, respuesta) => {
   try {
-      let usuarios = await userModel.find()
+      let usuarios = await usuarioModel.find()
       respuesta.status(200).json("index", { usuarios })
   } catch (error) {
       console.log(error);
@@ -16,11 +16,11 @@ export const crearUsuarios= async (peticion, respuesta) => {
       const usuarios = peticion.body;
 
       if (!Array.isArray(usuarios)) {
-      return respuesta.status(400).render("error", { error: 'La solicitud debe ser una lista de usuarios' });
+      return respuesta.status(400).json("error", { error: 'La solicitud debe ser una lista de usuarios' });
       }
-      await userModel.insertMany(usuarios);
-      const todosLosUsuarios = await userModel.find();
-      res.status(201).json("index", { usuarios: todosLosUsuarios });
+      await usuarioModel.insertMany(usuarios);
+      const todosLosUsuarios = await usuarioModel.find();
+      respuesta.status(201).json("index", { usuarios: todosLosUsuarios });
 
   } catch (error) {
       console.log(error);
@@ -29,7 +29,7 @@ export const crearUsuarios= async (peticion, respuesta) => {
 //Funcion buscar usuario por nombre
 export const buscarUsuarioNombre = async (peticion,respuesta) => {
   try {
-      const usuario = await userModel.findOne({ nombre: peticion.params.nombre });
+      const usuario = await usuarioModel.findOne({ nombre: peticion.params.nombre });
       if (usuario) {
         respuesta.status(200).json(usuario);
       } else {
@@ -42,7 +42,7 @@ export const buscarUsuarioNombre = async (peticion,respuesta) => {
 //Buscar usuario por correo
 export const buscarUsuarioCorreo = async (peticion,respuesta) => {
   try {
-      const correo = await userModel.findOne({correo: peticion.params.correo});
+      const correo = await usuarioModel.findOne({correo: peticion.params.correo});
       if(correo){
           respuesta.status(200).json(correo);
       } else {
@@ -55,7 +55,7 @@ export const buscarUsuarioCorreo = async (peticion,respuesta) => {
 //Buscar usuario por id 
 export const buscarUsuarioId = async(peticion,respuesta) => {
   try {
-      const idUsuario = await userModel.findOne({idUsuario: peticion.params.idUsuario});
+      const idUsuario = await usuarioModel.findOne({idUsuario: peticion.params.idUsuario});
       if (idUsuario){
           respuesta.status(200).json(idUsuario);
       } else {
@@ -70,7 +70,7 @@ export const buscarUsuarioId = async(peticion,respuesta) => {
 export const buscarUsuarioTelefono = async(peticion,respuesta) => {
   try {
       const numero = peticion.params;
-      const usuarioEncontrado = await userModel.findMany({telefono: { $regex: numero, $options: 'i' }});
+      const usuarioEncontrado = await usuarioModel.findMany({telefono: { $regex: numero, $options: 'i' }});
       
       if(usuarioEncontrado){
           respuesta.status(200).json(usuarioEncontrado);
@@ -85,7 +85,7 @@ export const buscarUsuarioTelefono = async(peticion,respuesta) => {
 //Ordenar usuarios de forma ASC
 export const ordenarUsuarioASC = async (peticion,respuesta) => {
   try {
-      const apellidos = await userModel.aggregate([
+      const apellidos = await usuarioModel.aggregate([
           {
               $project: { apellidos: 1, primeraletra: { $substr: ["$apellidos", 0, 1] } }
           },
@@ -106,7 +106,7 @@ export const ordenarUsuarioASC = async (peticion,respuesta) => {
 //Funcion de contar usuarios
 export const contarUsuarios = async(peticion,respuesta) => {
   try {
-      const cantidadUsuarios = await userModel.countDocuments();
+      const cantidadUsuarios = await usuarioModel.countDocuments();
       if(cantidadUsuarios){
           respuesta.status(200).json(cantidadUsuarios);
       }
@@ -124,7 +124,7 @@ export const nombreUsuarioId = async(peticion,respuesta)=>{
       if(!id || !nuevonombre){
           return respuesta.satus(400).json({message:"Se necesitan id y nombre"});
       }
-      const nombreActualizado= await userModel.findByIdAndUpdate({id},{nombre:nuevonombre},{new:true});
+      const nombreActualizado= await usuarioModel.findByIdAndUpdate({id},{nombre:nuevonombre},{new:true});
 
       if(!nombreActualizado){
           return respuesta.satus(400).json({message:"Usuario no encontrado"});
@@ -145,7 +145,7 @@ export const correoUsuarioId = async (peticion,respuesta)=>{
       if(!id || !nuevocorreo){
           return respuesta.status(400).json({message:"se necesitan id y correo"});
       }
-      const correoActualizado = await userModel.findByIdAndUpdate({id},{correo:nuevocorreo},{new:true});
+      const correoActualizado = await usuarioModel.findByIdAndUpdate({id},{correo:nuevocorreo},{new:true});
 
       if(!correoActualizado){
           return respuesta.satus(400),json({message:"Usuario no encontrado"});
@@ -166,7 +166,7 @@ export const telefonoUsuarioId = async (peticion,respuesta)=>{
       if(!id || !nuevotelefono){
           return respuesta.status(400).json({message:"se necesitan id y telefono"});
       }
-      const telefonoActualizado= await userModel.findByIdAndUpdate({id},{telefono:nuevotelefono},{new:true});
+      const telefonoActualizado= await usuarioModel.findByIdAndUpdate({id},{telefono:nuevotelefono},{new:true});
 
       if(!telefonoActualizado){
           return respuesta.status(400).json({message:"Usuario no encontrado"})
@@ -186,7 +186,7 @@ export const cambiarApellidoId = async (peticion,respuesta)=>{
       if(!id || !nuevoapellido){
           return respuesta.status(400).json({message:"se necesitan id y apellido"});
       }
-      const apellidoActualizado= await userModel.findByIdAndUpdate({id},{apellido:nuevoapellido},{new:true});
+      const apellidoActualizado= await usuarioModel.findByIdAndUpdate({id},{apellido:nuevoapellido},{new:true});
 
       if(!apellidoActualizado){
           return respuesta.status(400).json({message:"Usuario no encontrado"})

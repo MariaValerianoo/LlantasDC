@@ -3,7 +3,7 @@ import { ventaModel } from "../model/ventaModel.js";
 //Funcion obtener datos
 export const obtenerVenta = async (peticion, respuesta) => {
     try {
-        let venta = await userModel.find()
+        let venta = await ventaModel.find()
         respuesta.status(200).json("index", { venta })
     } catch (error) {
         console.log(error);
@@ -16,11 +16,11 @@ export const crearVenta = async (peticion, respuesta) => {
         const venta = peticion.body;
 
         if (!Array.isArray(venta)) {
-        return respuesta.status(400).render("error", { error: 'La solicitud debe ser una lista de ventas' });
+        return respuesta.status(400).json("error", { error: 'La solicitud debe ser una lista de ventas' });
         }
-        await userModel.insertMany(venta);
-        const todosLasVentas = await userModel.find();
-        res.status(201).render("index", { ventas : todosLasVentas });
+        await ventaModel.insertMany(venta);
+        const todosLasVentas = await ventaModel.find();
+        respuesta.status(201).json("index", { ventas : todosLasVentas });
 
     } catch (error) {
         console.log(error);
@@ -30,7 +30,7 @@ export const crearVenta = async (peticion, respuesta) => {
 //buscar las ventas por metodo de pago 
 export const buscarVentaPago = async(peticion,respuesta) => {
     try {
-        const pago = await userModel.findOne({metodoPago: peticion.params.pago});
+        const pago = await ventaModel.findOne({metodoPago: peticion.params.pago});
         if(pago){
             respuesta.status(200).json(pago);
         }
@@ -42,7 +42,7 @@ export const buscarVentaPago = async(peticion,respuesta) => {
 //buscar por rut 
 export const buscarVentaRut = async(peticion,respuesta) => {
     try {
-        const rut = await userModel.findOne({rutCliente: peticion.params.rut});
+        const rut = await ventaModel.findOne({rutCliente: peticion.params.rut});
         if(rut){
             respuesta.status(200).json(rut);
         }
@@ -54,7 +54,7 @@ export const buscarVentaRut = async(peticion,respuesta) => {
 //buscar por usuario
 export const buscarVentaUsuario = async(peticion,respuesta) => {
     try {
-        const usuario = await userModel.findOne({idUsuario: peticion.params.usuario});
+        const usuario = await ventaModel.findOne({idUsuario: peticion.params.usuario});
         if(usuario){
             respuesta.status(200).json(usuario);
         }
@@ -66,7 +66,7 @@ export const buscarVentaUsuario = async(peticion,respuesta) => {
 //ordenar total de compra DES
 export const ventaTotalDES = async (peticion,respuesta) => {
     try {
-        const ventas = await userModel.aggregate([
+        const ventas = await ventaModel.aggregate([
             {
                 $sort: { totalCompra: -1 } 
             }
@@ -85,7 +85,7 @@ export const buscarVentaFecha =  async(peticion,respuesta)=>{
         if (!fechaInicio || !fechaFin) {
             return respuesta.status(400).json({message: "Debe proporcionar las fechas 'fechaInicio' y 'fechaFin'" });
         }
-        const ventas= await userModel.findMany({fechaCompra: {$gte: new Date(fechaInicio),$lte: new Date(fechaFin)}});
+        const ventas= await ventaModel.findMany({fechaCompra: {$gte: new Date(fechaInicio),$lte: new Date(fechaFin)}});
 
         if (ventas.length > 0) {
             respuesta.status(200).json(ventas);
@@ -122,7 +122,7 @@ export const metodoPagoNumOrden = async(peticion,respuesta)=>{
         if(!numOrden || !nuevopago){
             return respuesta.satus(400).json({message:"Se necesitan numero de orden y metodo de pago"});
         }
-        const numerOrdenActualizado= await userModel.findByIdAndUpdate({numOrden},{metodoPago:nuevopago},{new:true});
+        const numerOrdenActualizado= await ventaModel.findByIdAndUpdate({numOrden},{metodoPago:nuevopago},{new:true});
 
         if(!numerOrdenActualizado){
             return respuesta.satus(400).json({message:"Venta no encontrada"});
@@ -142,7 +142,7 @@ export const fechaNumOrden = async(peticion,respuesta)=>{
         if(!numOrden || !nuevafecha){
             return respuesta.satus(400).json({message:"Se necesitan fecha y metodo de pago"});
         }
-        const fechaActualizada= await userModel.findByIdAndUpdate({numOrden},{fechaCompra:nuevafecha},{new:true});
+        const fechaActualizada= await ventaModel.findByIdAndUpdate({numOrden},{fechaCompra:nuevafecha},{new:true});
 
         if(!fechaActualizada){
             return respuesta.satus(400).json({message:"venta no encontrada"});

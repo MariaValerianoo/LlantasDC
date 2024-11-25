@@ -3,7 +3,7 @@ import { clienteModel } from "../model/clienteModel.js";
 //Funcion obtener datos
 export const obtenerClientes = async (peticion, respuesta) => {
     try {
-        let usuarios = await userModel.find()
+        let usuarios = await clienteModel.find()
         respuesta.status(200).json("index", { usuarios })
     } catch (error) {
         console.log(error);
@@ -15,22 +15,30 @@ export const crearCliente = async (peticion, respuesta) => {
     try {
         const clientes = peticion.body;
 
-        if (!Array.isArray(clientes)) {
-        return respuesta.status(400).render("error", { error: 'La solicitud debe ser una lista de clientes' });
+        if (Array.isArray(clientes)) {
+            // Si es un arreglo, insertar todos los clientes
+            await clienteModel.insertMany(clientes);
+        } else if (typeof clientes === "object" && clientes !== null) {
+            // Si es un objeto único, insertar un solo cliente
+            await clienteModel.create(clientes);
+        } else {
+            return respuesta.status(400).json({ error: "La solicitud debe ser un objeto o una lista de clientes" });
         }
-        await userModel.insertMany(clientes);
-        const todosLosClientes = await userModel.find();
-        res.status(201).render("index", { clientes: todosLosClientes });
 
+        // Consultar todos los clientes después de la inserción
+        const todosLosClientes = await clienteModel.find();
+        return respuesta.status(201).json({ clientes: todosLosClientes });
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        return respuesta.status(500).json({ error: "Error en el servidor" });
     }
-}
+};
+
 
 //buscar cliente por nombre tercero
 export const buscarClienteTercero = async (peticion,respuesta) => {
     try {
-        const cliente = await userModel.findOne({ nombretercero: peticion.params.nombretercero });
+        const cliente = await clienteModel.findOne({ nombretercero: peticion.params.nombretercero });
         if (cliente) {
           respuesta.status(200).json(cliente);
         } else {
@@ -44,7 +52,7 @@ export const buscarClienteTercero = async (peticion,respuesta) => {
 //buscar cliente por ciudad 
 export const buscarClienteCiudad = async (peticion,respuesta) => {
     try {
-        const cliente = await userModel.findOne({ ciudad: peticion.params.ciudad });
+        const cliente = await clienteModel.findOne({ ciudad: peticion.params.ciudad });
         if (cliente) {
           respuesta.status(200).json(cliente);
         } else {
@@ -58,7 +66,7 @@ export const buscarClienteCiudad = async (peticion,respuesta) => {
 //buscar cliente por direccion 
 export const buscarClienteDireccion = async (peticion,respuesta) => {
     try {
-        const cliente = await userModel.findOne({ direccion: peticion.params.direccion });
+        const cliente = await clienteModel.findOne({ direccion: peticion.params.direccion });
         if (cliente) {
           respuesta.status(200).json(cliente);
         } else {
@@ -72,7 +80,7 @@ export const buscarClienteDireccion = async (peticion,respuesta) => {
 //cuantos clientes hay
 export const contarCliente = async(peticion,respuesta) => {
     try {
-        const cantidadClientes = await userModel.countDocuments();
+        const cantidadClientes = await clienteModel.countDocuments();
         if(cantidadClientes){
             respuesta.status(200).json(cantidadClientes);
         }
@@ -85,7 +93,7 @@ export const contarCliente = async(peticion,respuesta) => {
 export const buscarClienteLikeTelefono = async(peticion,respuesta) => {
     try {
         const numero = peticion.params;
-        const clienteEncontrado = await userModel.findMany({telefono: { $regex: numero, $options: 'i' }});
+        const clienteEncontrado = await clienteModel.findMany({telefono: { $regex: numero, $options: 'i' }});
         
         if(clienteEncontrado){
             respuesta.status(200).json(clienteEncontrado);
@@ -104,12 +112,12 @@ export const cambiarTerceroRut = async(peticion,respuesta)=>{
         const nuevonombretercero= peticion.body;
 
         if(!rut || !nuevonombretercero){
-            return respuesta.satus(400).json({message:"Se necesitan rut y nombre de tercero"});
+            return respuesta.status(400).json({message:"Se necesitan rut y nombre de tercero"});
         }
-        const nombreTerceroActualizado= await userModel.findByIdAndUpdate({rut},{nombretercero:nuevonombretercero},{new:true});
+        const nombreTerceroActualizado= await clienteModel.findByIdAndUpdate({rut},{nombretercero:nuevonombretercero},{new:true});
 
         if(!nombreTerceroActualizado){
-            return respuesta.satus(400).json({message:"cliente no encontrado"});
+            return respuesta.status(400).json({message:"cliente no encontrado"});
         }
         respuesta.status(200).json({message:"Nombre tercero actualizado"});
     
@@ -125,12 +133,12 @@ export const cambiarDireccionRut = async(peticion,respuesta)=>{
         const nuevadireccion= peticion.body;
 
         if(!rut || !nuevadireccion){
-            return respuesta.satus(400).json({message:"Se necesitan rut y direccion"});
+            return respuesta.status(400).json({message:"Se necesitan rut y direccion"});
         }
-        const direccionActualizado= await userModel.findByIdAndUpdate({rut},{direccion:nuevadireccion},{new:true});
+        const direccionActualizado= await clienteModel.findByIdAndUpdate({rut},{direccion:nuevadireccion},{new:true});
 
         if(!direccionActualizado){
-            return respuesta.satus(400).json({message:"cliente no encontrado"});
+            return respuesta.status(400).json({message:"cliente no encontrado"});
         }
         respuesta.status(200).json({message:"Direccion actualizada"});
     
@@ -146,12 +154,12 @@ export const cambiarTelefonoRut = async(peticion,respuesta)=>{
         const nuevotelefono= peticion.body;
 
         if(!rut || !nuevotelefono){
-            return respuesta.satus(400).json({message:"Se necesitan rut y telefono"});
+            return respuesta.status(400).json({message:"Se necesitan rut y telefono"});
         }
-        const telefonoActualizado= await userModel.findByIdAndUpdate({rut},{telefono:nuevotelefono},{new:true});
+        const telefonoActualizado= await clienteModel.findByIdAndUpdate({rut},{telefono:nuevotelefono},{new:true});
 
         if(!telefonoActualizado){
-            return respuesta.satus(400).json({message:"cliente no encontrado"});
+            return respuesta.status(400).json({message:"cliente no encontrado"});
         }
         respuesta.status(200).json({message:"Telefono actualizado"});
     
@@ -167,12 +175,12 @@ export const cambiarCiudadRut = async(peticion,respuesta)=>{
         const nuevaciudad= peticion.body;
 
         if(!rut || !nuevaciudad){
-            return respuesta.satus(400).json({message:"Se necesitan rut y ciudad"});
+            return respuesta.status(400).json({message:"Se necesitan rut y ciudad"});
         }
-        const ciudadActualizado= await userModel.findByIdAndUpdate({rut},{ciudad:nuevaciudad},{new:true});
+        const ciudadActualizado= await clienteModel.findByIdAndUpdate({rut},{ciudad:nuevaciudad},{new:true});
 
         if(!ciudadActualizado){
-            return respuesta.satus(400).json({message:"cliente no encontrado"});
+            return respuesta.status(400).json({message:"cliente no encontrado"});
         }
         respuesta.status(200).json({message:"Ciudad actualizada"});
     
@@ -188,12 +196,12 @@ export const cambiarNombreRut = async(peticion,respuesta)=>{
         const nuevonombre= peticion.body;
 
         if(!rut || !nuevonombre){
-            return respuesta.satus(400).json({message:"Se necesitan rut y nombre"});
+            return respuesta.status(400).json({message:"Se necesitan rut y nombre"});
         }
-        const nombreActualizado= await userModel.findByIdAndUpdate({rut},{nombre:nuevonombre},{new:true});
+        const nombreActualizado= await clienteModel.findByIdAndUpdate({rut},{nombre:nuevonombre},{new:true});
 
         if(!nombreActualizado){
-            return respuesta.satus(400).json({message:"cliente no encontrado"});
+            return respuesta.status(400).json({message:"cliente no encontrado"});
         }
         respuesta.status(200).json({message:"Nombre actualizado"});
     
@@ -228,11 +236,11 @@ export const nombreTerceroRut = async(peticion,respuesta)=>{
         const nuevonombre= peticion.body;
 
         if(!rut || !nuevonombre){
-            return respuesta.satus(400).json({message:"Se necesitan rut y nombre"});
+            return respuesta.status(400).json({message:"Se necesitan rut y nombre"});
         }
-        const nombreActualizado= await userModel.findByIdAndUpdate({rut},{nombreTercero:nuevonombre},{new:true});
+        const nombreActualizado= await clienteModel.findByIdAndUpdate({rut},{nombreTercero:nuevonombre},{new:true});
         if(!nombreActualizado){
-            return respuesta.satus(400).json({message:"Usuario no encontrado"});
+            return respuesta.status(400).json({message:"Usuario no encontrado"});
         }
         respuesta.status(200).json({message:"Nombre de tercero actualizado"});
     
@@ -248,12 +256,12 @@ export const direccionRut = async(peticion,respuesta)=>{
         const nuevadireccion= peticion.body;
 
         if(!rut || !nuevadireccion){
-            return respuesta.satus(400).json({message:"Se necesitan rut y direccion"});
+            return respuesta.status(400).json({message:"Se necesitan rut y direccion"});
         }
-        const direccionActualizada= await userModel.findByIdAndUpdate({rut},{direccion:nuevadireccion},{new:true});
+        const direccionActualizada= await clienteModel.findByIdAndUpdate({rut},{direccion:nuevadireccion},{new:true});
 
         if(!direccionActualizada){
-            return respuesta.satus(400).json({message:"Usuario no encontrado"});
+            return respuesta.status(400).json({message:"Usuario no encontrado"});
         }
         respuesta.status(200).json({message:"direccion actualizada"});
     
@@ -269,12 +277,12 @@ export const telefonoRut = async(peticion,respuesta)=>{
         const nuevotelefono= peticion.body;
 
         if(!rut || !nuevotelefono){
-            return respuesta.satus(400).json({message:"Se necesitan rut y telefono"});
+            return respuesta.status(400).json({message:"Se necesitan rut y telefono"});
         }
-        const telefonoActualizado= await userModel.findByIdAndUpdate({rut},{telefono:nuevotelefono},{new:true});
+        const telefonoActualizado= await clienteModel.findByIdAndUpdate({rut},{telefono:nuevotelefono},{new:true});
 
         if(!telefonoActualizado){
-            return respuesta.satus(400).json({message:"Usuario no encontrado"});
+            return respuesta.status(400).json({message:"Usuario no encontrado"});
         }
         respuesta.status(200).json({message:"telefono actualizado"});
     
@@ -289,12 +297,12 @@ export const ciudadRut = async(peticion,respuesta)=>{
         const nuevaciudad= peticion.body;
 
         if(!rut || !nuevaciudad){
-            return respuesta.satus(400).json({message:"Se necesitan rut y ciudad"});
+            return respuesta.status(400).json({message:"Se necesitan rut y ciudad"});
         }
-        const ciudadActualizada= await userModel.findByIdAndUpdate({rut},{ciudad:nuevaciudad},{new:true});
+        const ciudadActualizada= await clienteModel.findByIdAndUpdate({rut},{ciudad:nuevaciudad},{new:true});
 
         if(!ciudadActualizada){
-            return respuesta.satus(400).json({message:"Usuario no encontrado"});
+            return respuesta.status(400).json({message:"Usuario no encontrado"});
         }
         respuesta.status(200).json({message:"ciudad actualizada"});
     
@@ -310,11 +318,11 @@ export const nombreContactoRut = async(peticion,respuesta)=>{
         const nuevonombrec= peticion.body;
 
         if(!rut || !nuevonombrec){
-            return respuesta.satus(400).json({message:"Se necesitan rut y nombre"});
+            return respuesta.status(400).json({message:"Se necesitan rut y nombre"});
         }
-        const nombrecActualizado= await userModel.findByIdAndUpdate({rut},{nombreContacto:nuevonombrec},{new:true});
+        const nombrecActualizado= await clienteModel.findByIdAndUpdate({rut},{nombreContacto:nuevonombrec},{new:true});
         if(!nombrecActualizado){
-            return respuesta.satus(400).json({message:"Usuario no encontrado"});
+            return respuesta.status(400).json({message:"Usuario no encontrado"});
         }
         respuesta.status(200).json({message:"Nombre de contacto actualizado"});
     

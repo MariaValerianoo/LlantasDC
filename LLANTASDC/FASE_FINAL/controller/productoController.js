@@ -3,7 +3,7 @@ import { productoModel } from "../model/productoModel.js";
 //Funcion obtener datos
 export const obtenerProducto = async (peticion, respuesta) => {
   try {
-      let producto = await userModel.find()
+      let producto = await productoModel.find()
       respuesta.status(200).json("index", { producto })
   } catch (error) {
       console.log(error);
@@ -16,11 +16,11 @@ export const crearProducto = async (peticion, respuesta) => {
       const producto = peticion.body;
 
       if (!Array.isArray(producto)) {
-      return respuesta.status(400).render("error", { error: 'La solicitud debe ser una lista de productos' });
+      return respuesta.status(400).json("error", { error: 'La solicitud debe ser una lista de productos' });
       }
       await userModel.insertMany(producto);
-      const todosLosProductos = await userModel.find();
-      res.status(201).render("index", { producto : todosLosProductos });
+      const todosLosProductos = await productoModel.find();
+      res.status(201).json("index", { producto : todosLosProductos });
 
   } catch (error) {
       console.log(error);
@@ -56,7 +56,7 @@ export const obtenerProductosPorCantidad = async (peticion, respuesta) => {
 //buscar producto por dimension 
 export const buscarProductoDimension = async(peticion,respuesta) => {
   try {
-      const dimension = await userModel.findOne({dimensionProducto: peticion.params.dimension});
+      const dimension = await productoModel.findOne({dimensionProducto: peticion.params.dimension});
       if(dimension){
           respuesta.status(200).json(dimension);
       }
@@ -68,7 +68,7 @@ export const buscarProductoDimension = async(peticion,respuesta) => {
 //buscar producto por marca 
 export const buscarProductoMarca = async(peticion,respuesta) => {
   try {
-      const marca = await userModel.findOne({marca: peticion.params.marca});
+      const marca = await productoModel.findOne({marca: peticion.params.marca});
       if(marca){
           respuesta.status(200).json(marca);
       }
@@ -80,7 +80,7 @@ export const buscarProductoMarca = async(peticion,respuesta) => {
 //buscar producto por diseño 
 export const buscarProductoDiseño = async(peticion,respuesta) => {
   try {
-      const diseño = await userModel.findOne({diseño: peticion.params.diseño});
+      const diseño = await productoModel.findOne({diseño: peticion.params.diseño});
       if(diseño){
           respuesta.status(200).json(diseño);
       }
@@ -115,7 +115,7 @@ export const precioReferencia = async(peticion,respuesta)=>{
       if(!referenciaProducto || !nuevoprecio){
           return respuesta.satus(400).json({message:"Se necesitan referencia de producto y precio"});
       }
-      const precioActualizado= await userModel.findByIdAndUpdate({referenciaProducto},{precio:nuevoprecio},{new:true});
+      const precioActualizado= await productoModel.findByIdAndUpdate({referenciaProducto},{precio:nuevoprecio},{new:true});
 
       if(!precioActualizado){
           return respuesta.satus(400).json({message:"producto no encontrado"});
@@ -135,7 +135,7 @@ export const cantidadReferencia = async(peticion,respuesta)=>{
       if(!referenciaProducto || !nuevacantidad){
           return respuesta.satus(400).json({message:"Se necesitan referencia de producto y precio"});
       }
-      const cantidadActualizada= await userModel.findByIdAndUpdate({referenciaProducto},{cantidad:nuevacantidad},{new:true});
+      const cantidadActualizada= await productoModel.findByIdAndUpdate({referenciaProducto},{cantidad:nuevacantidad},{new:true});
 
       if(!cantidadActualizada){
           return respuesta.satus(400).json({message:"producto no encontrado"});
@@ -155,7 +155,7 @@ export const dimensionReferencia = async(peticion,respuesta)=>{
       if(!referenciaProducto || !nuevadimension){
           return respuesta.satus(400).json({message:"Se necesitan referencia de producto ydimension"});
       }
-      const dimensionActualizada= await userModel.findByIdAndUpdate({referenciaProducto},{dimension:nuevadimension},{new:true});
+      const dimensionActualizada= await productoModel.findByIdAndUpdate({referenciaProducto},{dimension:nuevadimension},{new:true});
 
       if(!dimensionActualizada){
           return respuesta.satus(400).json({message:"producto no encontrado"});
@@ -175,7 +175,7 @@ export const diseñoReferencia = async(peticion,respuesta)=>{
       if(!referenciaProducto || !nuevodiseño){
           return respuesta.satus(400).json({message:"Se necesitan referencia de producto y diseño"});
       }
-      const diseñoActualizado= await userModel.findByIdAndUpdate({referenciaProducto},{diseño:nuevodiseño},{new:true});
+      const diseñoActualizado= await productoModel.findByIdAndUpdate({referenciaProducto},{diseño:nuevodiseño},{new:true});
 
       if(!diseñoActualizado){
           return respuesta.satus(400).json({message:"producto no encontrado"});
@@ -195,7 +195,7 @@ export const marcaReferencia = async(peticion,respuesta)=>{
       if(!referenciaProducto || !nuevamarca){
           return respuesta.satus(400).json({message:"Se necesitan referencia de producto y marca"});
       }
-      const marcaActualizada= await userModel.findByIdAndUpdate({referenciaProducto},{marca:nuevamarca},{new:true});
+      const marcaActualizada= await productoModel.findByIdAndUpdate({referenciaProducto},{marca:nuevamarca},{new:true});
 
       if(!marcaActualizada){
           return respuesta.satus(400).json({message:"producto no encontrado"});

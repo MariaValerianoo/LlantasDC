@@ -5,7 +5,7 @@ import { obtenerContenedor,crearContenedor,buscarContenedorNaviera,buscarIdMayor
 const router = Router()
 
 router.get('/contenedor', obtenerContenedor)
-router.post('/contenedor', crearContenedor)
+router.post('/contenedorcreate', crearContenedor)
 router.get('/contenedorNav',buscarContenedorNaviera)
 router.get('/contenedorID',buscarIdMayor)
 router.get('/contenedorFecha',buscarContenedorFecha)
